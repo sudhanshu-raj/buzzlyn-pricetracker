@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Price Drop Alert</title>
+  <!--[if mso]>
+  <style type="text/css">
+    table {border-collapse:collapse;border-spacing:0;margin:0;}
+    div, td {padding:0;}
+    div {margin:0 !important;}
+  </style>
+  <noscript>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+  </xml>
+  </noscript>
+  <![endif]-->
+
+
+</head>
+<body style="margin:0;padding:0;word-spacing:normal;color:white;">
+  <div role="article" aria-roledescription="email" lang="en" style="text-size-adjust:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+    <table role="presentation" style="width:100%;border:none;border-spacing:0;">
+      <tr>
+        <td align="center" style="padding:0;">
+          <!--[if mso]>
+          <table role="presentation" align="center" style="width:600px;">
+          <tr>
+          <td>
+          <![endif]-->
+          <table role="presentation" style="width:94%;max-width:600px;border:none;border-spacing:0;text-align:left;font-family:'Segoe UI',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.5;color:#e2e8f0;">
+            <div style="display:none;max-height:0px;overflow:hidden;mso-hide:all;font-size:1px;color:#ffffff;line-height:1px;">
+              {subject}
+            </div>
+            <!-- Logo Header -->
+            <tr>
+              <td style="padding:20px 10px 10px 10px;text-align:center;font-size:24px;font-weight:bold;background-color:#1e293b;border-radius:12px 12px 0 0;">
+                <a href="https://buzzlyn.com" style="text-decoration:none;">
+                  <img src="{logoUrl}" width="180" alt="PriceTracker Logo" style="width:180px;max-width:80%;height:auto;border:none;text-decoration:none;color:#ffffff;">
+                </a>
+              </td>
+            </tr>
+
+
+            <!-- Main Content -->
+            <tr>
+              <td style="padding:40px 30px;background-color:#0f172a;">
+                <div style="text-align:center;margin-bottom:35px;">
+                <h1 style="font-size:24px;line-height:32px;font-weight:bold;letter-spacing:-0.02em;color:#ffffff;">
+                 🎉 Back in Stock!
+                </h1>
+                </div>
+                <p style="margin:0 0 25px 0;font-size:16px;line-height:24px;color: white;">
+                  Hey there,
+                </p>
+                <p style="margin:0 0 25px 0;font-size:16px;line-height:24px;color: white;">
+                  <strong>Good news!</strong> The item on your tracking list is now available for purchase. 📦
+                </p>
+
+                <!-- Product Card -->
+                <table role="presentation" style="width:100%;border:1px solid #334155;border-radius:12px;border-spacing:0;margin-top:30px;margin-bottom:30px;overflow:hidden;background-color:#1e293b;">
+                  <tr>
+                    <!-- Product Image -->
+                    <td style="width:100%;padding:15px;vertical-align:middle;text-align:center;">
+                      <img src="{productImageUrl}" alt="{productName}" style="width:100%;max-width:450px;height:auto;border:none;text-decoration:none;border-radius:8px;">
+                    </td>
+                    </tr>
+                    <!-- Product Details -->
+                  <tr>
+  <td style="width:60%;padding:0px 20px 20px 20px;vertical-align:middle;text-align:left;">
+
+    <span style="margin:0 0 10px 20px;padding:5px 10px;font-size:14px;color:#94a3b8;border: 1px solid rgba(255, 255, 255, 0.259);border-radius: 15px;
+    ">{brand}</span>
+     <h3 style="font-size:18px;line-height:24px;font-weight:bold;color:#ffffff;margin: 15px 0px 10px 20px;">{productName}</h3>
+
+     <span style="margin:0px 0px 20px 20px;font-size: 26px;font-weight: bold;"> <span style="font-size: 16px;">{currencySymbol}</span>
+     <span style="font-style: italic;border-bottom: 1px dotted white;"> {newPrice} </span> </span>
+
+     <table role="presentation" style="max-width:100%;margin:0 auto;background-color:#0f172a;padding:15px 0px;border-radius:15px;text-align:center;margin-top: 10px;">
+      <tr >
+            <td>
+                <p style="margin: 0;padding:5px 15px;font-size: 22px;font-weight: bold;"> ✅ Stock In</p>
+            </td>
+        </tr>
+    </table>
+  </td>
+</tr>
+                </table>
+
+                <!-- CTA Button -->
+                <table role="presentation" style="width:100%;border:none;border-spacing:0;text-align:center;margin-bottom:35px;">
+                  <tr>
+                    <td style="padding:0;">
+                      <div style="margin:0 auto;max-width:280px;">
+                        <!--[if mso]>
+                        <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{productUrl}" style="height:52px;v-text-anchor:middle;width:280px;" arcsize="8%" stroke="f" fillcolor="#3b82f6">
+                          <w:anchorlock/>
+                          <center>
+                        <![endif]-->
+                        <a href="{productUrl}" style="display:inline-block;background-color:#3b82f6;color:#ffffff;border-radius:8px;font-family:sans-serif;font-size:16px;font-weight:bold;line-height:52px;text-align:center;text-decoration:none;width:100%;-webkit-text-size-adjust:none;">View Deal</a>
+                        <!--[if mso]>
+                          </center>
+                        </v:roundrect>
+                        <![endif]-->
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+
+                <p style="margin:0;font-size:16px;line-height:24px;text-align:center;color:#94a3b8;">
+                  Prices can change quickly. This deal might not last long.
+                </p>
+                <p style="margin:0;font-size:16px;line-height:24px;text-align:center;color:#94a3b8;">
+                  Happy shopping! 🛒
+                </p>
+                <!-- <div style="margin-top: 10px;"> -->
+                    <p style="margin: 15px 0 0 0;font-size:13px;color:#94a3b8;text-align:center;">
+                        Need to make changes? You can reconfigure your product tracker anytime from buzzlyn.
+                            <br>
+                  <a href="https://buzzlyn.com" style="color: #94a3b8;">[Click here to open it.] </a>
+                    </p>
+                <!-- </div> -->
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td style="padding:5px;background-color:#1e293b;border-top:1px solid #334155;border-radius:0 0 12px 12px;text-align:center;font-size:12px;color:#94a3b8;">
+                <p style="margin:0;font-size:12px;line-height:18px;">
+                  © Buzzlyn | This is an automated alert. You're receiving this because you subscribed to price notification
+                </p>
+              </td>
+            </tr>
+
+          </table>
+          <!--[if mso]>
+          </td>
+          </tr>
+          </table>
+          <![endif]-->
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

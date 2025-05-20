@@ -1,0 +1,320 @@
+.searchContainer {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    z-index: 10;
+  }
+  
+  .searchBar {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg, #ffffff);
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color, #e2e8f0);
+  }
+  
+  .searchBar.expanded {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    border-color: var(--primary-color, #3b82f6);
+  }
+  
+  .searchIcon {
+    color: var(--text-muted, #64748b);
+    margin-right: 0.75rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .searchInput {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    color: var(--text);
+    padding: 0.5rem 0;
+    outline: none;
+  }
+  
+  .searchInput::placeholder {
+    color: var(--text-muted, #94a3b8);
+  }
+  
+  .clearButton {
+    background: none;
+    border: none;
+    color: var(--text-muted, #94a3b8);
+    cursor: pointer;
+    padding: 0.25rem;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+  }
+  
+  .clearButton:hover {
+    background-color: var(--hover-bg, #f1f5f9);
+    color: var(--text-color, #1e293b);
+  }
+  
+  .searchButton {
+    background-color: var(--primary-color, #3b82f6);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .searchButton:hover {
+    background-color: var(--primary-hover, #2563eb);
+  }
+  
+  .historyDropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    background-color: var(--card-bg, #ffffff);
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--border-color, #e2e8f0);
+    overflow: hidden;
+    z-index: 20;
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  .historyHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color, #e2e8f0);
+    font-weight: 500;
+    color: var(--text);
+  }
+  
+  .clearHistoryBtn {
+    background: none;
+    border: none;
+    color: var(--primary-color, #3b82f6);
+    cursor: pointer;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .clearHistoryBtn:hover {
+    background-color: var(--hover-bg, #f1f5f9);
+  }
+  
+  .historyList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .historyItem {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .historyItem:hover {
+    background-color: var(--hover-bg, #f1f5f9);
+  }
+  
+  .historyItemContent {
+    display: flex;
+    align-items: center;
+    color: var(--text, #1e293b);
+  }
+  .historyItemContent:hover {
+    color: #1e293b;
+  }
+  .historyItem:hover .historyItemContent {
+    color: #1e293b;
+  }
+  
+  .historyIcon {
+    color: var(--text-muted, #64748b);
+    margin-right: 0.75rem;
+  }
+  
+  .noResults {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    background-color: var(--card-bg, #ffffff);
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--border-color, #e2e8f0);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  .noResultsIcon {
+    color: var(--text-muted, #64748b);
+    margin-bottom: 1rem;
+  }
+  
+  .noResults p {
+    color: var(--text);
+    margin: 0;
+  }
+  
+  /* Add these styles for the suggestions dropdown */
+  .suggestionsDropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    background-color: var(--card-bg, #ffffff);
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--border-color, #e2e8f0);
+    overflow: hidden;
+    z-index: 20;
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  .suggestionsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 350px;
+    overflow-y: auto;
+  }
+  
+  .suggestionItem {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s;
+  }
+  
+  
+  
+  .suggestionIcon {
+    color: var(--text-muted, #64748b);
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+  }
+  
+  .suggestionText {
+    color: var(--text, #1e293b);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .suggestionItem:hover,
+  .suggestionItem.highlighted {
+    background-color: var(--hover-bg, #f1f5f9);
+    color: #1e293b;
+  }
+  .suggestionItem:hover .suggestionText,
+  .suggestionItem.highlighted .suggestionText {
+    color: #1e293b;
+  }
+  
+  
+  .highlight {
+    color: var(--primary-color, #3b82f6);
+    font-weight: 500;
+  }
+  
+  /* Add a subtle divider between different suggestion types */
+  .suggestionItem:not(:last-child) {
+    border-bottom: 1px solid var(--border-color-light, #f1f5f9);
+  }
+  
+  /* Style for the "View all results" suggestion */
+  .suggestionItem:last-child {
+    border-top: 1px solid var(--border-color, #e2e8f0);
+    font-weight: 500;
+    color: var(--primary-color, #3b82f6);
+  }
+  
+  /* Ensure the dropdowns don't overlap */
+  .historyDropdown,
+  .suggestionsDropdown,
+  .noResults {
+    max-height: 350px;
+    overflow-y: auto;
+  }
+  
+  /* Add a subtle scrollbar for the dropdowns */
+  .historyDropdown::-webkit-scrollbar,
+  .suggestionsList::-webkit-scrollbar,
+  .noResults::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .historyDropdown::-webkit-scrollbar-track,
+  .suggestionsList::-webkit-scrollbar-track,
+  .noResults::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .historyDropdown::-webkit-scrollbar-thumb,
+  .suggestionsList::-webkit-scrollbar-thumb,
+  .noResults::-webkit-scrollbar-thumb {
+    background-color: var(--border-color, #e2e8f0);
+    border-radius: 6px;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .searchBar {
+      padding: 0.375rem 0.75rem;
+    }
+  
+    .searchButton {
+      padding: 0.375rem 0.75rem;
+      font-size: 0.875rem;
+    }
+  
+    .searchInput {
+      font-size: 0.875rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .searchButton {
+      display: none;
+    }
+  
+    .searchBar {
+      padding-right: 0.5rem;
+    }
+  }
+  

@@ -1,0 +1,7 @@
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          secret-key: ${MY_JWT_SECRET}

@@ -1,0 +1,942 @@
+.container {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.resetButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+}
+
+.resetIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.productGrid {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-muted);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+.productImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: hidden;
+  
+}
+
+.productTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.storeInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.store {
+  font-size: 0.875rem;
+  color: var(--text);
+  background-color: var(--primary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.viewLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.viewLink:hover {
+  text-decoration: underline;
+}
+
+.externalIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.priceContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.currentPrice {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.originalPrice {
+  font-size: 1rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.discount {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  background-color: var(--success);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+.ratingStockContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.availability {
+  display: flex;
+  align-items: center;
+}
+
+.inStock,
+.outOfStock {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.inStock {
+  color: var(--success);
+  background-color: var(--success-light);
+}
+
+.outOfStock {
+  color: var(--error);
+  background-color: var(--error-light);
+}
+
+.stockIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stars {
+  display: flex;
+}
+
+.star {
+  color: var(--warning);
+  width: 1rem;
+  height: 1rem;
+}
+
+.ratingValue {
+  font-weight: 600;
+}
+
+.reviewCount {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* Notification Content Styles */
+.notificationsContent {
+  padding: 1.5rem;
+  background-color: var(--bg-muted);
+}
+
+.notificationCard {
+  background-color: var(--bg-card);
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  background: linear-gradient(to right, var(--primary-light), var(--primary));
+  color: white;
+}
+
+.headerIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+.pincodeSection {
+  padding: 1.25rem;
+  margin-bottom: -1.5rem;
+}
+.notificationSection {
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.notificationSection:last-child {
+  border-bottom: none;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: var(--text);
+}
+
+.sectionDescription {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0 0 1rem 0;
+}
+
+/* Notification Options */
+.notificationOptions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.notificationOption {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.checkbox,
+.radio {
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--border);
+  border-radius: 0.25rem;
+  background-color: var(--bg-input);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.radio {
+  border-radius: 50%;
+}
+
+.checkbox:checked,
+.radio:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.checkbox:checked::after {
+  content: "";
+  position: absolute;
+  top: 0.25rem;
+  left: 0.4rem;
+  width: 0.3rem;
+  height: 0.6rem;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.radio:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.checkboxLabel,
+.radioLabel {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  align-items: center;
+}
+
+.radioLabelContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.channelIcon {
+  color: var(--primary);
+}
+
+/* Alert Type Options */
+.alertTypeOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.radioOption:has(input:checked) {
+  border-color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+}
+
+.boldText {
+  font-weight: 600;
+}
+
+.helpText {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 0.25rem;
+}
+
+/* Custom Price Container */
+.customPriceContainer {
+  margin-top: 1rem;
+  padding: 1.25rem;
+  background-color: var(--bg-muted);
+  border-radius: 0.5rem;
+  border: 1px dashed var(--border);
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  max-width: 200px;
+  margin-bottom: 0.75rem;
+}
+
+.inputPrefix {
+  display: flex;
+  align-items: center;
+  padding: 0 0.75rem;
+  background-color: var(--bg-muted);
+  border: 1px solid var(--border);
+  border-right: none;
+  border-radius: 0.375rem 0 0 0.375rem;
+  height: 2.5rem;
+  font-weight: 600;
+}
+
+.input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0 0.375rem 0.375rem 0;
+  background-color: var(--bg-input);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.inputHelp {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.discountButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.discountButton {
+  padding: 0.5rem 0.75rem;
+  background-color: var(--bg-muted);
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.discountButton:hover {
+  background-color: var(--bg);
+  border-color: var(--primary);
+}
+
+/* Stock Alert Banner */
+.stockAlertBanner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--error-light);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.bannerIcon {
+  color: var(--error);
+}
+
+.bannerTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+  color: var(--error);
+}
+
+.bannerText {
+  font-size: 0.875rem;
+  margin: 0;
+  color: var(--text);
+}
+
+.stockAlertOption {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background-color: var(--bg-card);
+}
+
+/* Update Toggle */
+.updateToggleContainer {
+  margin-bottom: 1.5rem;
+}
+
+.updateToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background-color: var(--bg-card);
+}
+
+.updateToggle .checkboxLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.updateFrequencyContainer {
+  margin-top: 1.5rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+.pincodeSection.updateFrequencyContainer {
+  margin: 0;
+  animation: fadeIn 0.3s ease-in-out;
+}
+.pincodeSection.input {
+  border-radius: 10px;
+  width: 125px;
+}
+
+/* Update Frequency */
+.frequencyOptions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.frequencyOption {
+  position: relative;
+}
+
+.frequencyOption input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.frequencyLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.frequencyOption input:checked + .frequencyLabel {
+  border-color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.frequencyHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.frequencyIcon {
+  color: var(--primary);
+}
+
+.frequencyDescription {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Save Button */
+.notificationFooter {
+  padding: 1.25rem;
+  background-color: var(--bg-card);
+  border-top: 1px solid var(--border);
+}
+
+.saveButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--primary);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.saveButton:hover {
+  background-color: var(--primary-dark);
+}
+
+.buttonIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.errorMessage {
+  color: #ef4444;
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Success Container Styles */
+.successContainer {
+  padding: 2rem;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.successHeader {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.successIconContainer {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--success-light), var(--success));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s infinite;
+  z-index: 1;
+}
+
+.successIcon {
+  color: white;
+  stroke-width: 2.5;
+  animation: checkmark 0.8s ease-in-out forwards;
+}
+
+.confetti {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.confettiPiece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--primary);
+  opacity: 0.8;
+  border-radius: 0;
+  animation: confetti 5s ease-in-out infinite;
+}
+
+.confettiPiece:nth-child(1) {
+  top: 10%;
+  left: 30%;
+  background-color: var(--success);
+  animation-delay: 0s;
+  transform: rotate(15deg);
+}
+
+.confettiPiece:nth-child(2) {
+  top: 20%;
+  left: 70%;
+  background-color: var(--primary);
+  animation-delay: 0.2s;
+  transform: rotate(30deg);
+}
+
+.confettiPiece:nth-child(3) {
+  top: 40%;
+  left: 40%;
+  background-color: var(--warning);
+  animation-delay: 0.4s;
+  transform: rotate(45deg);
+}
+
+.confettiPiece:nth-child(4) {
+  top: 50%;
+  left: 60%;
+  background-color: var(--success);
+  animation-delay: 0.6s;
+  transform: rotate(60deg);
+}
+
+.confettiPiece:nth-child(5) {
+  top: 60%;
+  left: 20%;
+  background-color: var(--primary);
+  animation-delay: 0.8s;
+  transform: rotate(75deg);
+}
+
+.confettiPiece:nth-child(6) {
+  top: 70%;
+  left: 80%;
+  background-color: var(--warning);
+  animation-delay: 1s;
+  transform: rotate(90deg);
+}
+
+.confettiPiece:nth-child(7) {
+  top: 80%;
+  left: 50%;
+  background-color: var(--success);
+  animation-delay: 1.2s;
+  transform: rotate(105deg);
+}
+
+.confettiPiece:nth-child(8) {
+  top: 90%;
+  left: 10%;
+  background-color: var(--primary);
+  animation-delay: 1.4s;
+  transform: rotate(120deg);
+}
+
+.confettiPiece:nth-child(9) {
+  top: 5%;
+  left: 90%;
+  background-color: var(--warning);
+  animation-delay: 1.6s;
+  transform: rotate(135deg);
+}
+
+.confettiPiece:nth-child(10) {
+  top: 15%;
+  left: 45%;
+  background-color: var(--success);
+  animation-delay: 1.8s;
+  transform: rotate(150deg);
+}
+
+.successContent {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.successTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--success);
+  margin-bottom: 1rem;
+}
+
+.successDescription {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.productHighlight {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.successActions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.dashboardLink,
+.trackAnotherButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.dashboardLink {
+  background-color: var(--primary);
+  color: white;
+  text-decoration: none;
+}
+
+.dashboardLink:hover {
+  background-color: var(--primary-dark);
+}
+
+.trackAnotherButton {
+  background-color: var(--bg-muted);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.trackAnotherButton:hover {
+  background-color: var(--bg);
+  border-color: var(--primary);
+}
+
+.actionIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.successNote {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 1rem;
+}
+.infoMessage {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.customDaysInput {
+    width: 60px;
+    height: 32px;
+    padding: 4px 8px;
+    border: 1px solid #D1D5DB;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #FFFFFF; 
+    color: #000000;
+    display: block; 
+    opacity: 1;
+    position: relative; 
+    z-index: 5;
+}
+.customDaysInput:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--primary-light);
+}
+@media (min-width: 640px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .notificationOptions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .successActions {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 768px) {
+  .productGrid {
+    grid-template-columns: 12rem 1fr;
+    gap: 2rem;
+  }
+
+  .frequencyOptions {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .notificationOptions {
+    grid-template-columns: 1fr;
+  }
+
+  .frequencyOptions {
+    grid-template-columns: 1fr;
+  }
+
+  .successActions {
+    flex-direction: column;
+  }
+
+  .pincodeCheckbox{
+    width: 32px;
+  }
+  .updateCheckbox{
+    width: 40px;
+  }
+ 
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(var(--success-rgb), 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(var(--success-rgb), 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--success-rgb), 0);
+  }
+}
+
+@keyframes checkmark {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes confetti {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100px) rotate(720deg);
+    opacity: 0;
+  }
+}

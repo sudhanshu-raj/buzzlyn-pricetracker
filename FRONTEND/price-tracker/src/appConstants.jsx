@@ -1,0 +1,3 @@
+
+const MAX_OTP_SEND_ATTEMPTS = 10;
+

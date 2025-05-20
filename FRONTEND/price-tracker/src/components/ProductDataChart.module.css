@@ -1,0 +1,97 @@
+.priceHistoryContainer {
+    margin-bottom: 1.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .chartControls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .periodSelector,
+  .aggregationSelector {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text);
+    font-size: 0.875rem;
+  }
+  
+  .priceHistoryChart {
+    height: 10rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--bg-muted);
+  margin-left:-20px;
+  }
+  
+  .priceHistoryTable {
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tableHeader {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: var(--bg-muted);
+    font-weight: 600;
+  }
+  
+  .tableRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border);
+  }
+  
+  .tableCell {
+    padding: 0.75rem;
+  }
+  
+  .noData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    background-color: var(--bg-muted);
+    border-radius: 0.5rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  /* Add these new styles */
+.customTooltip {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tooltipDate {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tooltipPrice {
+    margin: 0.25rem 0;
+  }
+  
+  .tooltipLabel {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-right: 0.5rem;
+  }
+  
+  .tableBody {
+    max-height: 300px;
+    overflow-y: auto;
+  }

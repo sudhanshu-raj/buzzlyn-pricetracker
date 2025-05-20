@@ -1,0 +1,553 @@
+.container {
+    width: 100%;
+  }
+  
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .resetButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .resetIcon {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .card {
+    background-color: var(--bg-card);
+    border-radius: 0.75rem;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  
+  .productGrid {
+    display: grid;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-muted);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    aspect-ratio: 1;
+  }
+  
+  .productImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .productInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .productTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  
+  .storeInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .store {
+    font-size: 0.875rem;
+    color: var(--text);
+    background-color: var(--primary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+  
+  .viewLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--primary);
+    text-decoration: none;
+  }
+  
+  .viewLink:hover {
+    text-decoration: underline;
+  }
+  
+  .externalIcon {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  
+  .priceContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  
+  .currentPrice {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  
+  .originalPrice {
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
+  
+  .discount {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    background-color: var(--success);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+  
+  .availability {
+    display: flex;
+    align-items: center;
+  }
+  
+  .inStock,
+  .outOfStock {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+  
+  .inStock {
+    color: var(--success);
+    background-color: var(--success-light);
+  }
+  
+  .outOfStock {
+    color: var(--error);
+    background-color: var(--error-light);
+  }
+  
+  .stockIcon {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .stars {
+    display: flex;
+  }
+  
+  .star {
+    color: var(--warning);
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .ratingValue {
+    font-weight: 600;
+  }
+  
+  .reviewCount {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+  
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .tab {
+    flex: 1;
+    padding: 0.75rem;
+    background: none;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .tab:hover {
+    color: var(--text);
+  }
+  
+  .activeTab {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+  }
+  
+  .tabContent {
+    padding: 1.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .priceHistoryChart {
+    height: 10rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  
+  .chartPlaceholder {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-muted);
+    border-radius: 0.5rem;
+  }
+  
+  .chartLine {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary-light), var(--primary));
+    transform: rotate(-10deg);
+  }
+  
+  .chartDot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    transform: translate(-50%, 50%);
+  }
+  
+  .priceHistoryTable {
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .tableHeader {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: var(--bg-muted);
+    font-weight: 600;
+  }
+  
+  .tableRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border);
+  }
+  
+  .tableCell {
+    padding: 0.75rem;
+  }
+  
+ /* {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid var(--border-color, #eaeaea);
+    padding: 10px;
+    padding-left: 20px;
+    border-radius: 5px;
+  } */
+  .notificationOptions ,
+  .notificationFrequency,
+  .priceAlert,
+  .pincodeAlert,
+  .stockAlert{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid var(--border-color, #eaeaea);
+    border-radius: 5px;
+    padding: 10px;
+    padding-left: 20px;
+   
+    margin-bottom: 1rem;
+  }
+
+  .notificationOption,
+  .radioOption,
+  .priceAlertOption,
+  .customPriceLabel,
+  .pincodeAlertOption,
+  .stockAlertOption {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .stockAlertOption {
+    margin:0px;
+  }
+  .customPriceInputContainer{
+    display: flex;
+    align-items: center;
+  }
+  .currencySymbol{
+    font-size: 1rem;
+    padding: 5px 10px;
+    margin-right: -10px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .priceAlertOption.customPrice{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .notificationOptionFrequency{
+    display: flex;
+    align-items: center;
+  }
+  .checkbox,
+  .radio {
+    margin-right: 0.75rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--primary);
+  }
+  
+  .checkboxLabel,
+  .radioLabel {
+    font-size: 1rem;
+  }
+  
+  
+  .customPriceInput ,
+  .pincodeInput{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 10px;
+    font-size: 1rem;
+    width: 90px;
+  
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius:0.375rem;
+    background-color: var(--bg-input);
+    color: var(--text);
+    font-size: 1rem;
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .pincodeInput{
+    border-radius:0.375rem;
+    margin-left: 30px;
+  }
+  .customPriceInput:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--primary-light);
+  }
+  
+  .priceTargetForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .label {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  
+  .inputGroup {
+    display: flex;
+    align-items: center;
+  }
+  
+  .inputPrefix {
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    background-color: var(--bg-muted);
+    border: 1px solid var(--border);
+    border-right: none;
+    border-radius: 0.375rem 0 0 0.375rem;
+    height: 2.5rem;
+  }
+  
+  .input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 0 0.375rem 0.375rem 0;
+    background-color: var(--bg-input);
+    color: var(--text);
+    font-size: 1rem;
+  }
+  
+  .input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--primary-light);
+  }
+  
+  .inputHelp {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+  
+  .discountButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .discountButton {
+    padding: 0.5rem 0.75rem;
+    background-color: var(--bg-muted);
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+  
+  .discountButton:hover {
+    background-color: var(--bg);
+    border-color: var(--primary);
+  }
+  
+  .saveButton,
+  .successButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    
+    transition: background-color 0.2s;
+  }
+  .saveButton {
+    background-color: var(--primary);
+    color: white;
+  }
+  .successButton {
+   color: var(--success);
+    background-color: var(--success-light);
+  }
+  
+  .saveButton:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  .successButton:hover{
+    opacity: 0.8;
+  
+  }
+  .buttonIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .notificationDuration {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color, #eaeaea);
+  }
+  
+  .durationSelectContainer {
+    width: 100%;
+  }
+  
+  .select {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border-color, #e2e8f0);
+    background-color: var(--input-bg, white);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1rem;
+  }
+  
+  .errorMessage{
+    color: #ef4444;
+    font-size: 0.875rem;
+    padding: 0.5rem;
+    display: flex;  
+    align-items: center;
+    gap: 0.5rem;
+  }
+/* In your DashboardProductDetails.module.css */
+
+  
+  @media (min-width: 640px) {
+    .header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .productGrid {
+      grid-template-columns: 12rem 1fr;
+      gap: 2rem;
+    }
+  }
+  
+  

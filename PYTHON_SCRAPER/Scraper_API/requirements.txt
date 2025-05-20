@@ -1,0 +1,14 @@
+beautifulsoup4==4.13.4
+Crawl4AI==0.4.247
+fastapi==0.115.12
+numpy==2.2.6
+- opencv_contrib_python==4.11.0.86
+- opencv_python==4.10.0.84
+Pillow~=10.4
+playwright==1.49.1
+protobuf==3.20.2
+pydantic==2.11.4
+python-dotenv==1.1.0
+- ultralytics==8.3.61
+uvicorn==0.34.2
+google-generativeai>=0.3.0

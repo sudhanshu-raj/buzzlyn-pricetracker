@@ -1,0 +1,21 @@
+ <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 20px;">
+                  <tr>
+                    <td class="product-section">
+                      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td class="two-column mobile-center" width="30%" style="vertical-align: top;">
+                            <img src="{productImageUrl}" alt="Product Image" class="product-image" style="max-width: 100px;">
+                          </td>
+                          <td class="two-column product-details" width="70%" style="vertical-align: top; padding-left: 10px;">
+                            <span class="store-badge" style="color:white;">{productBrand}</span>
+                            <h4 style="font-size: 16px; margin-bottom: 10px;color:white;">{productName}</h4>
+                            <p style="font-size: 18px; font-weight: bold; margin-bottom: 5px;color:white;">{productNewPrice}</p>
+                            <p class="in-stock">{productStockStatus}</p>
+                            <p class="price-drop">{productPriceStatus}</p>
+                            <a href="{productUrl}" class="button" style="font-size: 14px; padding: 8px 15px;">Checkout</a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>

@@ -1,0 +1,101 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem;
+}
+
+.wrapper {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.withoutProduct {
+  margin-top: 3rem;
+}
+
+.withProduct {
+  margin-top: 0;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+}
+
+.formWrapper {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.formWrapper.compact {
+  margin-bottom: 1.5rem;
+}
+
+.emptyState {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.iconWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.icon {
+  width: 5rem;
+  height: 5rem;
+  padding: 1rem;
+  border-radius: 9999px;
+  background-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.emptyTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.emptyText {
+  color: var(--text-muted);
+  max-width: 24rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .content {
+    padding: 4rem 1rem;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .withoutProduct {
+    margin-top: 5rem;
+  }
+}
+

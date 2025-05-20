@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weekly Product Update</title>
+    <style type="text/css">
+      /* Reset styles */
+      body,
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      table,
+      td {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      body {
+        background-color: #0f172a;
+        margin: 0;
+        padding: 0;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+      table {
+        border-spacing: 0;
+        border-collapse: collapse;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+      img {
+        border: 0;
+        height: auto;
+        line-height: 100%;
+        outline: none;
+        text-decoration: none;
+        -ms-interpolation-mode: bicubic;
+      }
+      /* Base styles */
+      .wrapper {
+        width: 100%;
+        table-layout: fixed;
+        background-color: #f5f5f5;
+        padding-bottom: 40px;
+      }
+      .main {
+        background-color: #0f172a;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 600px;
+        border-spacing: 0;
+        color: #f5f5f5;
+      }
+      .header {
+        background-color: #1e293b;
+        padding: 20px;
+        color: #ffffff;
+        text-align: center;
+      }
+      .content {
+        padding: 20px;
+      }
+      .dark-section {
+        background-color: #0f172a;
+        padding: 20px;
+        color: #ffffff;
+      }
+      .product-section {
+        background-color: #1e293b;
+        padding: 20px;
+        color: #ffffff;
+        margin-bottom: 20px;
+        border-radius: 8px;
+      }
+      .product-image {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 10px;
+        border: none;
+      }
+      .button {
+        background-color: #3a82f7;
+        color: #ffffff !important;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-weight: bold;
+        display: inline-block;
+        margin: 10px 0;
+        text-align: center;
+      }
+      .price-history {
+        background-color: #1e293b;
+        padding: 20px;
+        color: #ffffff;
+        margin-bottom: 20px;
+        border-radius: 8px;
+      }
+      .price-chart {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+        background-color: #ffffff;
+        border-radius: 8px;
+      }
+      .footer {
+        background-color: #1e293b;
+        padding: 20px;
+        color: #ffffff;
+        text-align: center;
+        font-size: 12px;
+      }
+      .price-drop {
+        color: #ffffff;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+      .price-drop-m {
+        color: #ffffff;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+      .store-badge {
+        background-color: rgba(255, 255, 255, 0.1);
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+      .in-stock {
+        color: #10b981;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 15px;
+      }
+      .old-price {
+        text-decoration: line-through;
+        color: #9ca3af;
+        font-size: 14px;
+      }
+      .action-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+      }
+      /* Mobile styles */
+      @media screen and (max-width: 600px) {
+        .main {
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+        .product-image {
+          max-width: 150px !important;
+        }
+        .two-column {
+          width: 100% !important;
+          display: block !important;
+        }
+        .two-column td {
+          width: 100% !important;
+          display: block !important;
+        }
+        .product-details {
+          padding-left: 0 !important;
+          padding-top: 15px !important;
+        }
+        .button {
+          display: block !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+        .button-container {
+          width: 100% !important;
+          display: block !important;
+          margin-bottom: 10px !important;
+        }
+        .spacer {
+          display: none !important;
+        }
+        .mobile-stack {
+          display: block !important;
+          width: 100% !important;
+        }
+        .mobile-center {
+          text-align: center !important;
+        }
+        .price-drop-m {
+          margin-bottom: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <table class="main" width="100%">
+      <div style="display:none;max-height:0px;overflow:hidden;mso-hide:all;font-size:1px;color:#ffffff;line-height:1px;">
+        {subject}
+      </div>
+        <!-- HEADER -->
+        <tr>
+          <td class="header">
+            <a href="https://buzzlyn.com" style="text-decoration: none">
+              <img
+                src="{logoUrl}"
+                width="180"
+                alt="PriceTracker Logo"
+                style="
+                  width: 180px;
+                  max-width: 80%;
+                  height: auto;
+                  border: none;
+                  text-decoration: none;
+                  color: #ffffff;
+                "
+              />
+            </a>
+          </td>
+        </tr>
+
+        <!--SUBJECT-->
+        <tr style="padding: 10px">
+          <td style="text-align: center; padding: 30px 0">
+            <h1
+              style="
+                font-size: 24px;
+                line-height: 32px;
+                font-weight: bold;
+                letter-spacing: -0.02em;
+                color: #ffffff;
+              "
+            >
+              {timePeriod} Product Updates 📰
+            </h1>
+          </td>
+        </tr>
+
+        <!-- GREETING -->
+        <tr>
+          <td class="content">
+            <p
+              style="
+                margin: 0 0 20px 0;
+                font-size: 16px;
+                line-height: 24px;
+                color: white;
+              "
+            >
+              Hey there,
+            </p>
+            <p
+              style="
+                margin: 0;
+                font-size: 16px;
+                line-height: 24px;
+                color: white;
+              "
+            >
+              Here's your personalized update on the products you're tracking.⚡
+            </p>
+          </td>
+        </tr>
+
+        <!-- FEATURED PRODUCT -->
+        <tr>
+          <td class="content">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td class="product-section">
+                  <table
+                    width="100%"
+                    cellpadding="0"
+                    cellspacing="0"
+                    border="0"
+                  >
+                    <tr>
+                      <td
+                        class="two-column"
+                        width="50%"
+                        style="vertical-align: top; padding-right: 10px"
+                      >
+                        <span class="store-badge">{brand}</span>
+                        <h3 style="font-size: 16px; margin-bottom: 15px;color: white;">
+                          {productName}
+                        </h3>
+                        <span
+                          style="
+                            margin: 0px 0px 20px 0px;
+                            font-size: 26px;
+                            font-weight: bold;
+                          "
+                        >
+                          <span style="font-size: 16px">{currencySymbol}</span>
+                          <span
+                            style="
+                              font-style: italic;
+                              border-bottom: 1px dotted white;
+                            "
+                          >
+                            {newPriceOnly}</span
+                          >
+                        </span>
+                        <p class="in-stock" style="margin-bottom: 5px">
+                          {stockStatus}
+                        </p>
+                        <p class="price-drop-m">{priceStatus}</p>
+                      </td>
+                      <td
+                        class="two-column"
+                        width="50%"
+                        style="vertical-align: top"
+                      >
+                        <img
+                          src="{productImageUrl}"
+                          alt="Product Image"
+                          class="product-image"
+                        />
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- PRICE HISTORY CHART -->
+        <tr>
+          <td class="content">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td class="price-history">
+                  <h3
+                    style="
+                      font-size: 20px;
+                      margin-bottom: 15px;
+                      text-align: center;
+                    "
+                  >
+                    📈 Price Trend Chart
+                  </h3>
+                  <img
+                    src="{graph}"
+                    alt="Price History Chart"
+                    class="price-chart"
+                  />
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ACTION BUTTONS -->
+        <tr>
+          <td class="content">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td
+                  class="button-container mobile-stack"
+                  width="48%"
+                  style="text-align: center"
+                >
+                  <a
+                    href="{mainProductUrl}"
+                    class="button"
+                    style="width: 80%; box-sizing: border-box"
+                    >Checkout Product</a
+                  >
+                </td>
+                <td class="spacer" width="4%">&nbsp;</td>
+                <td
+                  class="button-container mobile-stack"
+                  width="48%"
+                  style="text-align: center"
+                >
+                  <a
+                    href="{dashboardUrl}"
+                    class="button"
+                    style="width: 80%; box-sizing: border-box"
+                    >View in Dashboard</a
+                  >
+                </td>
+              </tr>
+            </table>
+
+            <p
+              style="
+                font-size: 14px;
+                color: #666;
+                margin: 20px 0;
+                text-align: center;
+                color: #ffffff;
+              "
+            >
+              Need to make changes? You can reconfigure your product tracker
+              anytime from buzzlyn.
+              <a href="{dashboardUrl}" style="color: #ffffffb4">From here</a>
+            </p>
+          </td>
+        </tr>
+
+        <!-- OTHER PRODUCTS SECTION -->
+        <tr>
+          <td class="content">
+            <h3
+              style="
+                font-size: 20px;
+                margin: 20px 0;
+                text-align: center;
+                padding: 10px;
+                background-color: #1e293b;
+                color: #ffffff;
+                border-radius: 4px;
+              "
+            >
+              <!--otherProduct-->
+            </h3>
+
+            <!--product1-->
+            <!--product2-->
+            <!--product3-->
+          </td>
+        </tr>
+
+        <!-- FOOTER -->
+        <tr>
+          <td class="footer">
+            <p>
+              © Buzzlyn | This is an automated alert. You're receiving this
+              because you subscribed to product updates
+            </p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

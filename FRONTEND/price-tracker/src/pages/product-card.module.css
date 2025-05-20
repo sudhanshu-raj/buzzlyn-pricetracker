@@ -1,0 +1,120 @@
+.card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+  }
+  
+  .imageContainer {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 0.5rem;
+  }
+  
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  
+  .store {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    margin-bottom: 0.75rem;
+  }
+  
+  .priceContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .currentPrice {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #3a7bd5;
+  }
+  
+  .originalPrice {
+    font-size: 0.875rem;
+    text-decoration: line-through;
+    color: var(--muted-foreground);
+  }
+  
+  .discount {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    background-color: #10b981;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+  
+  .link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #3a7bd5;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  
+  .icon {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  
+  @media (max-width: 640px) {
+    .card {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+  
+    .imageContainer {
+      width: 120px;
+      height: 120px;
+    }
+  
+    .content {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .priceContainer {
+      justify-content: center;
+    }
+  }
+  
+  

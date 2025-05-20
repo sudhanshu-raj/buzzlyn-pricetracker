@@ -1,0 +1,119 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: pricetrack-mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  redis:
+    image: redis:7.0-alpine
+    container_name: pricetrack-redis
+    volumes:
+      - redis-data:/data
+
+  security-service:
+    build:
+      context: ./BACKEND/SCRAPER_BKD_SECURITY
+    container_name: pricetrack-security
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://pricetrack-mysql:3306/${MYSQL_DATABASE}?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      SPRING_DATA_REDIS_DATABASE: 1
+      JWT_SECRET: ${JWT_SECRET}
+      LOCALHOST: localhost
+      FRONTEND_BASE_URL: https://buzzlyn.com
+      BACKEND_SPRING_MAIN_MODULE:  http://pricetrack-main:8082/
+      SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_REDIRECT_URI: https://buzzlyn.com/login/oauth2/code/google
+      SERVER_MAX_HTTP_HEADER_SIZE: ${SERVER_MAX_HTTP_HEADER_SIZE}
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  main-service:
+    build:
+      context: ./BACKEND/SCRAPER_BKD
+    container_name: pricetrack-main
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://pricetrack-mysql:3306/${MYSQL_DATABASE}?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      WEBPUSH_PUBLIC_KEY: ${WEBPUSH_PUBLIC_KEY}
+      WEBPUSH_PRIVATE_KEY: ${WEBPUSH_PRIVATE_KEY}
+      WEBPUSH_MAIL: ${WEBPUSH_MAIL}
+      BREVO_USERNAME: ${BREVO_USERNAME}
+      BREVO_PASSWORD: ${BREVO_PASSWORD}
+      CLOUDINARY_URL: ${CLOUDINARY_URL}
+      MY_JWT_SECRET: ${JWT_SECRET}
+      PYTHON_SCRAPER_URL: http://pricetrack-scraper:8000/
+      PYTHON_SCRAPER_SECRETKEY: ${PYTHON_SCRAPER_SECRETKEY}
+      FRONTEND_BASE_URL: https://buzzlyn.com
+    depends_on:
+      mysql:
+        condition: service_healthy
+      security-service:
+        condition: service_started
+
+  frontend:
+    build:
+      context: ./FRONTEND/price-tracker
+    container_name: pricetrack-frontend
+    environment:
+      VITE_VAPID_PUBLIC_KEY: ${VITE_VAPID_PUBLIC_KEY}
+      VITE_BACKEND_SCRAPER_URL: http://pricetrack-main:8082/
+      VITE_BACKEND_SECURITY_URL: http://pricetrack-security:8081/
+    depends_on:
+      - main-service
+      - security-service
+
+  scraper:
+    build:
+      context: ./PYTHON_SCRAPER/Scraper_API
+    container_name: pricetrack-scraper
+    environment:
+      SCRAPER_API_KEY : ${SCRAPER_API_KEY}
+      GEMINI_API_KEY : ${GEMINI_API_KEY}
+      ZENROWS_SERVER : ${ZENROWS_SERVER}
+      ZENROWS_USERNAME : ${ZENROWS_USERNAME}
+      ZENROWS_PASSWORD : ${ZENROWS_PASSWORD}
+    depends_on:
+      - mysql
+    restart: unless-stopped
+
+  nginx:
+    build:
+      context: ./NGINX
+    container_name: pricetrack-nginx
+    volumes:
+      - ./ssl:/etc/nginx/ssl
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - frontend
+      - main-service
+      - scraper
+
+volumes:
+  mysql-data:
+  redis-data:

@@ -1,0 +1,1 @@
+PINCODE_TRACKER_BRANDS = ["amazon.in", "flipkart"]
