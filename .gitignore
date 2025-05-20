@@ -27,6 +27,9 @@ yarn-error.log*
 **/venv/
 **/.env
 **/.DS_Store
+*.pt
+*.pth
+*.onnx
 
 # Docker & SSL
 certbot/conf/
