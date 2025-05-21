@@ -2,7 +2,8 @@ version: '3.9'
 
 services:
   mysql:
-    image: mysql:8
+    build:
+      context: ./mysql
     container_name: pricetrack-mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
@@ -15,7 +16,7 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./mysql-init:/docker-entrypoint-initdb.d
+      - ./mysql:/docker-entrypoint-initdb.d
 
   redis:
     image: redis:7.0-alpine
@@ -28,7 +29,7 @@ services:
       context: ./BACKEND/SCRAPER_BKD_SECURITY
     container_name: pricetrack-security
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://pricetrack-mysql:3306/${MYSQL_DATABASE}?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://pricetrack-mysql:3306/${MYSQL_DATABASE}?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
       SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
       SPRING_DATA_REDIS_HOST: redis
@@ -53,7 +54,7 @@ services:
       context: ./BACKEND/SCRAPER_BKD
     container_name: pricetrack-main
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://pricetrack-mysql:3306/${MYSQL_DATABASE}?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://pricetrack-mysql:3306/${MYSQL_DATABASE}?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
       SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
