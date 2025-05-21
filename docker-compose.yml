@@ -76,7 +76,7 @@ services:
     build:
       context: ./FRONTEND/price-tracker
     container_name: pricetrack-frontend
-    environment:
+    args:  # Use args instead of environment
       VITE_VAPID_PUBLIC_KEY: ${VITE_VAPID_PUBLIC_KEY}
       VITE_SECURITY_BASE_URL: /auth/
       VITE_SCRAPER_BASE_URL: /api/
