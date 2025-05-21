@@ -1,8 +1,22 @@
 export const SECURITY_BASE_URL = import.meta.env.VITE_SECURITY_BASE_URL || "http://localhost:8081";
-export const AUTH_BASE_URL = `${SECURITY_BASE_URL}/auth`;
-export const SCRAPER_BASE_URL=import.meta.env.VITE_SCRAPER_BASE_URL || "http://localhost:8082";
+export const SCRAPER_BASE_URL = import.meta.env.VITE_SCRAPER_BASE_URL || "http://localhost:8082";
 
-console.log("SECURITY_BASE_URL", SECURITY_BASE_URL);
+// Ensure URLs include the domain when needed
+const getFullUrl = (basePath) => {
+  // If it's just a path (starts with /), add the current domain
+  if (basePath && basePath.startsWith('/') && !basePath.startsWith('//') && !basePath.includes('://')) {
+    return `${window.location.origin}${basePath}`;
+  }
+  return basePath;
+};
+
+// Create full URLs for API endpoints
+const fullSecurityUrl = getFullUrl(SECURITY_BASE_URL);
+export const AUTH_BASE_URL = `${fullSecurityUrl}/auth`;
+
+console.log("SECURITY_BASE_URL (original)", SECURITY_BASE_URL);
+console.log("SECURITY_BASE_URL (full)", fullSecurityUrl);
+console.log("AUTH_BASE_URL", AUTH_BASE_URL);
 console.log("SCRAPER_BASE_URL", SCRAPER_BASE_URL);
 
 export const ENDPOINTS = {
