@@ -78,8 +78,8 @@ services:
     container_name: pricetrack-frontend
     environment:
       VITE_VAPID_PUBLIC_KEY: ${VITE_VAPID_PUBLIC_KEY}
-      VITE_BACKEND_SCRAPER_URL: http://pricetrack-main:8082/
-      VITE_BACKEND_SECURITY_URL: http://pricetrack-security:8081/
+      VITE_BACKEND_SCRAPER_URL: /api/
+      VITE_BACKEND_SECURITY_URL: /auth/
     depends_on:
       - main-service
       - security-service
@@ -109,10 +109,14 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    restart: always
     depends_on:
-      - frontend
-      - main-service
-      - scraper
+      frontend:
+        condition: service_started
+      main-service:
+        condition: service_started
+      scraper:
+        condition: service_started
   certbot:
     image: certbot/certbot
     container_name: pricetrack-certbot
@@ -122,6 +126,7 @@ services:
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     depends_on:
       - nginx
+    restart: always
 
 volumes:
   mysql-data:
