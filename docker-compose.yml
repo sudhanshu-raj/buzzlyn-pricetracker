@@ -75,11 +75,11 @@ services:
   frontend:
     build:
       context: ./FRONTEND/price-tracker
+      args:  # Use args instead of environment
+        VITE_VAPID_PUBLIC_KEY: ${VITE_VAPID_PUBLIC_KEY}
+        VITE_SECURITY_BASE_URL: /auth/
+        VITE_SCRAPER_BASE_URL: /api/
     container_name: pricetrack-frontend
-    args:  # Use args instead of environment
-      VITE_VAPID_PUBLIC_KEY: ${VITE_VAPID_PUBLIC_KEY}
-      VITE_SECURITY_BASE_URL: /auth/
-      VITE_SCRAPER_BASE_URL: /api/
     depends_on:
       - main-service
       - security-service
