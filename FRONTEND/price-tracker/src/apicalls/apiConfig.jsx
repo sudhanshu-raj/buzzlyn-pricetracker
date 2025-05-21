@@ -2,6 +2,9 @@ export const SECURITY_BASE_URL = import.meta.env.VITE_SECURITY_BASE_URL || "http
 export const AUTH_BASE_URL = `${SECURITY_BASE_URL}/auth`;
 export const SCRAPER_BASE_URL=import.meta.env.VITE_SCRAPER_BASE_URL || "http://localhost:8082";
 
+console.log("SECURITY_BASE_URL", SECURITY_BASE_URL);
+console.log("SCRAPER_BASE_URL", SCRAPER_BASE_URL);
+
 export const ENDPOINTS = {
     AUTH_BASE_URL,
     GOOGLE_OAUTH_URL: `${SECURITY_BASE_URL}/oauth2/authorization/google`,

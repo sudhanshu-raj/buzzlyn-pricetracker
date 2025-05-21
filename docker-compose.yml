@@ -78,8 +78,8 @@ services:
     container_name: pricetrack-frontend
     environment:
       VITE_VAPID_PUBLIC_KEY: ${VITE_VAPID_PUBLIC_KEY}
-      VITE_SECURITY_BASE_URL: /api/
-      VITE_SCRAPER_BASE_URL: /auth/
+      VITE_SECURITY_BASE_URL: /auth/
+      VITE_SCRAPER_BASE_URL: /api/
     depends_on:
       - main-service
       - security-service
