@@ -123,7 +123,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
     public Cookie createSecureCookie2(String name, String value) {
         Cookie cookie = new Cookie(name, value);
         cookie.setHttpOnly(true);
-        cookie.setSecure(false); // for development only
+        cookie.setSecure(true); 
         cookie.setPath("/");
         cookie.setAttribute("SameSite", "Lax"); // Prevents CSRF attacks
         cookie.setMaxAge((int)(JWT_EXPIRATION / 1000));
