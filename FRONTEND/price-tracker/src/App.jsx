@@ -37,8 +37,8 @@ function AppRoutes() {
       <Route path="/about" element={<AboutPage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/auth/callback" element={<OAuthCallback />} />
-      <Route path="/sampleWebPush" element={<SendNotificationForm />} />
-      <Route path="/chart" element={<ChartComponent />} />
+      {/* <Route path="/sampleWebPush" element={<SendNotificationForm />} />
+      <Route path="/chart" element={<ChartComponent />} /> */}
 
 
     </Routes>
