@@ -1,0 +1,3 @@
+CREATE USER IF NOT EXISTS 'pricetracker'@'%' IDENTIFIED BY '!grea8One12345';
+GRANT ALL PRIVILEGES ON scraper.* TO 'pricetracker'@'%';
+FLUSH PRIVILEGES;
