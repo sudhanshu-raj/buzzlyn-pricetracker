@@ -2,8 +2,7 @@ version: '3.9'
 
 services:
   mysql:
-    build:
-      context: ./mysql
+    image: mysql:8.0
     container_name: pricetrack-mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
