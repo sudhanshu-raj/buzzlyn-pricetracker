@@ -78,8 +78,8 @@ services:
     container_name: pricetrack-frontend
     environment:
       VITE_VAPID_PUBLIC_KEY: ${VITE_VAPID_PUBLIC_KEY}
-      VITE_BACKEND_SCRAPER_URL: /api/
-      VITE_BACKEND_SECURITY_URL: /auth/
+      VITE_SECURITY_BASE_URL: /api/
+      VITE_SCRAPER_BASE_URL: /auth/
     depends_on:
       - main-service
       - security-service
@@ -110,13 +110,6 @@ services:
       - "80:80"
       - "443:443"
     restart: always
-    depends_on:
-      frontend:
-        condition: service_started
-      main-service:
-        condition: service_started
-      scraper:
-        condition: service_started
   certbot:
     image: certbot/certbot
     container_name: pricetrack-certbot
