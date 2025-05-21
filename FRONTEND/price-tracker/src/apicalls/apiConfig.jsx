@@ -1,18 +1,26 @@
 export const SECURITY_BASE_URL = import.meta.env.VITE_SECURITY_BASE_URL || "http://localhost:8081";
 export const SCRAPER_BASE_URL = import.meta.env.VITE_SCRAPER_BASE_URL || "http://localhost:8082";
 
+// Helper to join URL parts without double slashes
+const joinPaths = (...parts) => {
+  return parts
+    .map(part => part.replace(/^\/+|\/+$/g, '')) // Remove leading/trailing slashes
+    .filter(Boolean)                             // Remove empty segments
+    .join('/');
+};
+
 // Ensure URLs include the domain when needed
 const getFullUrl = (basePath) => {
   // If it's just a path (starts with /), add the current domain
   if (basePath && basePath.startsWith('/') && !basePath.startsWith('//') && !basePath.includes('://')) {
-    return `${window.location.origin}${basePath}`;
+    return `${window.location.origin}/${basePath.replace(/^\/+/, '')}`;
   }
   return basePath;
 };
 
 // Create full URLs for API endpoints
 const fullSecurityUrl = getFullUrl(SECURITY_BASE_URL);
-export const AUTH_BASE_URL = `${fullSecurityUrl}/auth`;
+export const AUTH_BASE_URL = `${window.location.origin}/${joinPaths(SECURITY_BASE_URL, 'auth')}`;
 
 console.log("SECURITY_BASE_URL (original)", SECURITY_BASE_URL);
 console.log("SECURITY_BASE_URL (full)", fullSecurityUrl);
