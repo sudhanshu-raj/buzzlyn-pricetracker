@@ -78,8 +78,8 @@ services:
       context: ./FRONTEND/price-tracker
       args:  # Use args instead of environment
         VITE_VAPID_PUBLIC_KEY: ${VITE_VAPID_PUBLIC_KEY}
-        VITE_SECURITY_BASE_URL: /
-        VITE_SCRAPER_BASE_URL: /api/
+        VITE_SECURITY_BASE_URL: https://buzzlyn.com/auth
+        VITE_SCRAPER_BASE_URL: https://buzzlyn.com/api
     container_name: pricetrack-frontend
     depends_on:
       - main-service
