@@ -9,21 +9,10 @@ const joinPaths = (...parts) => {
     .join('/');
 };
 
-// Ensure URLs include the domain when needed
-const getFullUrl = (basePath) => {
-  // If it's just a path (starts with /), add the current domain
-  if (basePath && basePath.startsWith('/') && !basePath.startsWith('//') && !basePath.includes('://')) {
-    return `${window.location.origin}/${basePath.replace(/^\/+/, '')}`;
-  }
-  return basePath;
-};
 
-// Create full URLs for API endpoints
-const fullSecurityUrl = getFullUrl(SECURITY_BASE_URL);
-export const AUTH_BASE_URL = `${window.location.origin}/${joinPaths(SECURITY_BASE_URL, 'auth')}`;
+export const AUTH_BASE_URL = `${joinPaths(SECURITY_BASE_URL, 'auth')}`;
 
 console.log("SECURITY_BASE_URL (original)", SECURITY_BASE_URL);
-console.log("SECURITY_BASE_URL (full)", fullSecurityUrl);
 console.log("AUTH_BASE_URL", AUTH_BASE_URL);
 console.log("SCRAPER_BASE_URL", SCRAPER_BASE_URL);
 

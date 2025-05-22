@@ -59,11 +59,9 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests((requests) -> requests
                     .requestMatchers(
-                            "/error","/redis/*","/auth/**", "/oauth2/**", "/login/**").permitAll()
+                            "/error","/redis/*","/auth/**", "/oauth2/**", "/login/**","/tst/**").permitAll()
                         .anyRequest().authenticated()
                 )
-//                .addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)
-//                .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
                 .formLogin(form -> form.disable())  // Disable default login form
                 .httpBasic(basic -> basic.disable())  // Disable HTTP Basic if you don't need it
                 .httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomAuthenticationEntryPoint()))
