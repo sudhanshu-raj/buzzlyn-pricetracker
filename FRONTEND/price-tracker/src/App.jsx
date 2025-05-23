@@ -13,6 +13,8 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 import { ProductProvider } from "./context/ProductContext";
 import SendNotificationForm from "./components/SampleWebPushDemo.jsx";
 import ChartComponent from "./components/ChartBackend.jsx";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage.jsx";
+import TermsConditionsPage from "./pages/TermsConditionsPage.jsx";
 
 function AppRoutes() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -37,8 +39,9 @@ function AppRoutes() {
       <Route path="/about" element={<AboutPage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/auth/callback" element={<OAuthCallback />} />
-      {/* <Route path="/sampleWebPush" element={<SendNotificationForm />} />
-      <Route path="/chart" element={<ChartComponent />} /> */}
+      <Route path="/privacypolicy" element={<PrivacyPolicyPage/>} />
+      <Route path="/termsandconditions" element={<TermsConditionsPage/>} />
+
 
 
     </Routes>

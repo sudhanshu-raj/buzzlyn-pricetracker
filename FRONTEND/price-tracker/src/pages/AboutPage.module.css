@@ -1,352 +1,462 @@
-.container {
-  display: flex;
+.pageContainer {
   min-height: 100vh;
+  display: flex;
   flex-direction: column;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 .main {
   flex: 1;
 }
 
-.content {
+.container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
+/* Hero Section */
 .heroSection {
   padding: 4rem 0;
-  background-color: var(--bg-muted);
+  background: linear-gradient(135deg, var(--background-color) 0%, var(--card-background) 100%);
 }
 
 .heroContent {
-  max-width: 48rem;
-  margin: 0 auto;
   text-align: center;
 }
 
 .heroTitle {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
 }
 
-.gradient {
-  background: linear-gradient(to right, var(--primary), var(--secondary));
+.brandName {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   background-clip: text;
-  color: transparent;
+   font-family: "Croogla4F", sans-serif;
 }
 
 .heroSubtitle {
   font-size: 1.25rem;
   color: var(--text-muted);
   margin-bottom: 2rem;
-}
-
-.heroImageWrapper {
-  display: flex;
-  justify-content: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .heroImage {
-  border-radius: 0.75rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  margin-top: 2rem;
 }
 
+.heroImg {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Story Section */
 .storySection {
-  padding: 4rem 0;
+   padding: 0 1rem; 
 }
 
 .storyGrid {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 3rem;
+  align-items: center;
 }
 
 .sectionTitle {
   font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-}
-
-.storyText {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  font-size: 1.125rem;
-  margin-bottom: 2rem;
-}
-
-.ctaWrapper {
-  margin-top: 2rem;
-}
-
-.ctaButton {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--primary);
-  color: white;
   font-weight: 600;
-  border-radius: 0.375rem;
-  text-decoration: none;
-  transition: background-color 0.2s;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
 }
 
-.ctaButton:hover {
-  background-color: var(--primary-dark);
+.storyText p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  font-size: 1.1rem;
 }
 
-.arrowIcon {
-  margin-left: 0.5rem;
-  width: 1rem;
-  height: 1rem;
-  transition: transform 0.2s;
-}
-
-.ctaButton:hover .arrowIcon {
-  transform: translateX(4px);
-}
-
-.statsWrapper {
+.bannerImage {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  padding: 20px;
 }
 
-.statsWrapper::before {
+.bannerImg {
+  width: 120%;  /* Enlarge by 20% */
+  max-width: 600px;
+  height: auto;
+  transform: rotate(-8.9deg); /* Apply the rotation */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Add depth */
+  border-radius: 8px; /* Slightly rounded corners */
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+/* Optional: Add a subtle hover effect */
+.bannerImg:hover {
+  transform: rotate(-8.9deg) scale(1.02);
+}
+
+/* Optional: Add a decorative element behind the image */
+.bannerImage::before {
   content: "";
   position: absolute;
-  top: -1rem;
-  left: -1rem;
-  right: -1rem;
-  bottom: -1rem;
-  background-color: var(--primary-light);
-  border-radius: 0.75rem;
-  z-index: -1;
+  width: 80%;
+  height: 80%;
+  background: linear-gradient(45deg, #3484f0, #00ca72);
+  opacity: 0.1;
+  border-radius: 16px;
+  transform: rotate(5deg);
+  z-index: 0;
 }
-
-.statsContent {
-  display: flex;
-  flex-direction: column;
+.statsContainer {
+  display: grid;
   gap: 1.5rem;
-  padding: 1.5rem;
 }
 
-.statItem {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
+.statCard {
+  background-color: var(--card-background);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
 }
 
 .statIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  background-color: var(--primary-light);
-  border-radius: 9999px;
-  color: var(--primary);
-  flex-shrink: 0;
-}
-
-.statTitle {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
-.statDescription {
-  color: var(--text-muted);
+.statNumber {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
 }
 
+.statLabel {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Services Section */
+.servicesSection {
+  padding: 4rem 0;
+  background-color: var(--card-background);
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.serviceCard {
+  background-color: var(--background-color);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.serviceCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.serviceIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.serviceTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.serviceDescription {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Values Section */
 .valuesSection {
   padding: 4rem 0;
-  background-color: var(--bg-muted);
-}
-
-.valuesHeader {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.sectionSubtitle {
-  font-size: 1.25rem;
-  color: var(--text-muted);
-  max-width: 32rem;
-  margin: 0 auto;
 }
 
 .valuesGrid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  margin-top: 2rem;
 }
 
 .valueCard {
-  background-color: var(--bg-card);
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  border: 1px solid var(--border);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-background);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease;
+}
+
+.valueCard:hover {
+  transform: translateY(-5px);
 }
 
 .valueIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  background-color: var(--primary-light);
-  border-radius: 9999px;
-  color: var(--primary);
+  font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
 .valueTitle {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
 }
 
 .valueDescription {
   color: var(--text-muted);
+  line-height: 1.6;
 }
 
-.teamSection {
+/* Contact Section */
+.contactSection {
   padding: 4rem 0;
+  background-color: var(--card-background);
 }
 
-.teamHeader {
+.contactContent {
   text-align: center;
-  margin-bottom: 4rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.teamGrid {
-  display: grid;
-  gap: 2rem;
-}
-
-.teamMember {
-  text-align: center;
-}
-
-.memberImage {
-  aspect-ratio: 1;
-  overflow: hidden;
-  border-radius: 0.75rem;
-  background-color: var(--bg-muted);
-  margin-bottom: 1rem;
-}
-
-.memberImage img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.memberName {
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.memberRole {
+.contactDescription {
   color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
 }
 
+.contactInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--background-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.contactIcon {
+  font-size: 1.5rem;
+}
+
+.contactItem h4 {
+  margin: 0 0 0.25rem 0;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.contactItem p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* CTA Section */
 .ctaSection {
   padding: 4rem 0;
-  background-color: var(--primary-light);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 }
 
 .ctaContent {
-  max-width: 48rem;
-  margin: 0 auto;
   text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .ctaTitle {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  color: white;
 }
 
-.ctaSubtitle {
-  font-size: 1.25rem;
-  color: var(--text-muted);
+.ctaDescription {
+  font-size: 1.1rem;
   margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
 }
 
 .ctaButtons {
   display: flex;
-  flex-direction: column;
   gap: 1rem;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primaryButton,
+.secondaryButton {
+  padding: 0.875rem 2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
 }
 
 .primaryButton {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--primary);
-  color: white;
-  font-weight: 600;
-  border-radius: 0.375rem;
-  text-decoration: none;
-  transition: background-color 0.2s;
+  background-color: white;
+  color: var(--primary-color);
 }
 
 .primaryButton:hover {
-  background-color: var(--primary-dark);
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
 }
 
 .secondaryButton {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
   background-color: transparent;
-  color: var(--text);
-  font-weight: 600;
-  border-radius: 0.375rem;
-  border: 1px solid var(--border);
-  text-decoration: none;
-  transition: background-color 0.2s;
+  color: white;
+  border: 2px solid white;
 }
 
 .secondaryButton:hover {
-  background-color: var(--bg-muted);
+  background-color: white;
+  color: var(--primary-color);
+  transform: translateY(-2px);
 }
 
-@media (min-width: 640px) {
-  .ctaButtons {
-    flex-direction: row;
-  }
-}
-
-@media (min-width: 768px) {
+/* Responsive Design */
+@media (max-width: 768px) {
   .heroTitle {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
   }
 
-  .valuesGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .teamGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
   .storyGrid {
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+
+  .servicesGrid,
+  .valuesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
     align-items: center;
   }
 
-  .valuesGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .teamGrid {
-    grid-template-columns: repeat(4, 1fr);
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    max-width: 300px;
   }
 }
 
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .serviceCard,
+  .valueCard {
+    padding: 1.5rem;
+  }
+
+  .contactInfo {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .storyGrid {
+    display: block;
+    position: relative;
+    padding-bottom: 120px; /* Create space for overlapping image */
+  }
+  
+  .storyContent {
+    position: relative;
+    z-index: 2; /* Ensure text stays above the image */
+  }
+  
+  .bannerImage {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 70%; /* Smaller size */
+    padding: 0;
+    transform: translateY(40px); /* Push down to overlap with text */
+  }
+  
+  .bannerImg {
+    width: 100%; /* Full width of its reduced container */
+    max-width: none;
+    opacity: 0.9; /* Slightly transparent */
+  }
+  
+  /* Ensure paragraph text is readable over the image */
+  .storyText p:last-child {
+    position: relative;
+    z-index: 3; /* Keep above the image */
+    background: linear-gradient(to bottom, transparent 0%, rgba(var(--background), 0.85) 30%);
+    padding-bottom: 10px;
+  }
+}
+
+/* For extra small screens */
+@media (max-width: 480px) {
+  .bannerImage {
+    width: 85%; /* Slightly larger proportion on very small screens */
+    transform: translateY(20px);
+  }
+}

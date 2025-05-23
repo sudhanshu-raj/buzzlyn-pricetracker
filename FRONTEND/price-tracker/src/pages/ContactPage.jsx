@@ -55,21 +55,10 @@ function ContactPage() {
     {
       icon: "mail",
       title: "Email",
-      details: "support@pricewatch.com",
+      details: "support@buzzlyn.com",
       description: "Our friendly team is here to help.",
     },
-    {
-      icon: "map",
-      title: "Office",
-      details: "123 Market Street, San Francisco, CA",
-      description: "Come say hello at our office.",
-    },
-    {
-      icon: "phone",
-      title: "Phone",
-      details: "+1 (555) 123-4567",
-      description: "Mon-Fri from 8am to 5pm.",
-    },
+   
   ]
 
   return (
@@ -154,7 +143,7 @@ function ContactPage() {
                   ))}
                 </div>
 
-                <div className={styles.socialSection}>
+                {/* <div className={styles.socialSection}>
                   <h3 className={styles.socialTitle}>Follow Us</h3>
                   <div className={styles.socialIcons}>
                     {["Twitter", "LinkedIn", "Facebook", "Instagram"].map((platform, index) => (
@@ -226,7 +215,7 @@ function ContactPage() {
                       </a>
                     ))}
                   </div>
-                </div>
+                </div> */}
               </div>
 
               {/* Contact Form */}
@@ -327,17 +316,17 @@ function ContactPage() {
                 {
                   question: "How does PriceWatch work?",
                   answer:
-                    "PriceWatch monitors product prices across major retailers. Simply paste a product URL, set your target price, and we'll notify you when the price drops.",
+                    "PriceWatch monitors product prices across major retailers. Simply paste a product URL, set your target like price alert, stock alert, pincode alert and we'll notify you when the that meets.",
                 },
                 {
                   question: "Is PriceWatch free to use?",
                   answer:
-                    "Yes, PriceWatch is free for basic tracking. We also offer premium plans with additional features like unlimited product tracking and priority notifications.",
+                    "Yes, PriceWatch is free for now. You can track as much product you want also can see tracked products on your dashboard and modify your configs.",
                 },
                 {
                   question: "Which stores do you support?",
                   answer:
-                    "We support all major online retailers including Amazon, Walmart, Best Buy, Target, eBay, and many more. We're constantly adding new stores to our platform.",
+                    "We support all major online retailers including Amazon, Flipkart, Myntra, Chroma, eBay, and many more. We're constantly adding new stores to our platform.",
                 },
                 {
                   question: "How do I get notified of price drops?",
@@ -351,7 +340,7 @@ function ContactPage() {
                 </div>
               ))}
             </div>
-            <div className={styles.supportSection}>
+            {/* <div className={styles.supportSection}>
               <p className={styles.supportText}>Still have questions? Contact our support team.</p>
               <button className={styles.supportButton}>
                 <svg
@@ -370,7 +359,7 @@ function ContactPage() {
                 </svg>
                 Chat with Support
               </button>
-            </div>
+            </div> */}
           </div>
         </section>
 

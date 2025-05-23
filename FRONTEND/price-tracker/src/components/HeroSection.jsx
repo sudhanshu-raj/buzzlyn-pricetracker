@@ -1,8 +1,8 @@
-"use client"
 
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import styles from "./HeroSection.module.css"
+import HeroPageBanner from "../assets/heroPageBanner.png"
 
 function HeroSection() {
   return (
@@ -51,7 +51,7 @@ function HeroSection() {
             className={styles.imageContainer}
           >
             <img
-              src="/placeholder.svg?height=400&width=500"
+              src={HeroPageBanner}
               alt="Price tracking dashboard"
               className={styles.heroImage}
             />
