@@ -53,6 +53,7 @@ services:
       context: ./BACKEND/SCRAPER_BKD
     container_name: pricetrack-main
     environment:
+      GEMINI_API_KEY : ${GEMINI_API_KEY}
       SPRING_DATASOURCE_URL: jdbc:mysql://pricetrack-mysql:3306/${MYSQL_DATABASE}?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
       SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
