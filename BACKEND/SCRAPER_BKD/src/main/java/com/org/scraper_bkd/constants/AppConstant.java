@@ -65,6 +65,7 @@ public final class AppConstant {
     public static final String PYTHON_SCRAPER_URL=getEnv("PYTHON_SCRAPER_URL");
     public static final String PYTHON_SCRAPER_SECRETKEY=getEnv("PYTHON_SCRAPER_SECRETKEY");
     public static final String FRONTEND_BASE_URL=getEnv("FRONTEND_BASE_URL");
+    public static final String GEMINI_API_KEY=getEnv("GOOGLE_API_KEY");
 
 }
 

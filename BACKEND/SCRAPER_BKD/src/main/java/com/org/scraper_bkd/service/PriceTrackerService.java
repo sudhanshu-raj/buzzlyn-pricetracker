@@ -45,17 +45,17 @@ import static com.org.scraper_bkd.constants.AppConstant.PRICE_SCRAPER_ENDPOINT;
 @RequiredArgsConstructor
 public class PriceTrackerService {
 
-    private static final Logger logger = LoggerFactory.getLogger(ProductScraperService.class);
+    private static final Logger logger = LoggerFactory.getLogger(PriceTrackerService.class);
 
     private  final AppConfig appConfig;
     private  final RestTemplate restTemplate;
-    private  final OllamaService ollamaService;
     private final PriceTrackerRepo priceTrackerRepo;
     private final ProductScraperService productScraperService;
     private final PriceTrackerUserRepo priceTrackerUserRepo;
     private final PincodeTrackerDTO pincodeTrackerDTO;
     private final ProductScraperRepo productScraperRepo;
     private final ProductHelper helper;
+    private GeminiClient geminiClient;
 
 
     @Transactional
@@ -394,7 +394,7 @@ public class PriceTrackerService {
                 !availability_str.equalsIgnoreCase("in_stock") &&
                 !availability_str.equalsIgnoreCase("out_stock")) {
             try {
-                int availability = ollamaService.checkProductAvailability(availability_str).block();
+                int availability = geminiClient.checkProductAvailability(availability_str);
                 availability_str = (availability > 0) ? "in_stock" : "out_stock";
             } catch (Exception e) {
                 logger.warn("Failed to determine availability: {}", e.getMessage());
@@ -460,7 +460,7 @@ public class PriceTrackerService {
 
         try {
             LocalDateTime notificationUpdateDate=null;
-            if(priceTrackerRequest.isNotificationFrequencySet() && priceTrackerRequest.getNotificationFrequencyValue().equals(NotificationFrequency.CUSTOM)){
+            if(priceTrackerRequest.isNotificationFrequencySet() && priceTrackerRequest.getNotificationFrequencyValue().describeConstable().isPresent()){
                 notificationUpdateDate=LocalDateTime.now();
             }
             //save user config

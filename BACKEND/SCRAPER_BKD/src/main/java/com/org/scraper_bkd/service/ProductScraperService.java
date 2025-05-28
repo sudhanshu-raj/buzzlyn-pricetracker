@@ -44,10 +44,10 @@ public class ProductScraperService {
     private  final RestTemplate restTemplate;
     private  final AppConfig appConfig;
     private  final ProductScraperRepo productScraperRepo;
-    private  final OllamaService ollamaService;
     private final ProductHelper productHelper;
     private final PriceTrackerRepo priceTrackerRepo;
     private final PriceHistoryRepo priceHistoryRepo;
+    private final GeminiClient geminiClient;
 
 
     public ProductScraperModel getProductDetails(String url) {
@@ -162,7 +162,7 @@ public class ProductScraperService {
                     System.out.println("currency extracted is " + currency);
                     String availability_str = data.has("stock") ? data.get("stock").asText() : null;
                     if (!availability_str.equalsIgnoreCase("in_stock") && !availability_str.equalsIgnoreCase("out_stock")) {
-                        int availability = ollamaService.checkProductAvailability(availability_str).block();
+                        int availability = geminiClient.checkProductAvailability(availability_str);
                         if (availability == 0) {
                             availability_str = "out_stock";
                         } else {
@@ -363,12 +363,7 @@ public class ProductScraperService {
         return null;
     }
 
-    public static void main(String[] args) {
-        ProductScraperService scraperService = new ProductScraperService(null,null,null,null,null,null,null);
-        String url="https://www.amazon.in/Majestic-Man-Classic-Cotton-Casual/dp/B0CK6LC8QR/ref=sr_1_7?sr=8-7";
-        System.out.println(scraperService.extractUrlIdentifier(url));
 
-    }
 
 
 }
