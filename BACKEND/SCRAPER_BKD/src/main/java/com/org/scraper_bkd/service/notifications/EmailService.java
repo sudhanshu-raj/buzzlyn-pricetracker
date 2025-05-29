@@ -10,7 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -21,9 +26,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 import static com.org.scraper_bkd.constants.AppConstant.*;
 
@@ -34,8 +37,10 @@ public class EmailService {
     private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
 
     private final PriceTrackerRepo priceTrackerRepo;
+    private static final RestTemplate restTemplate = new RestTemplate();
 
-    public static void sendEmail(String recipient,String subject, String template) throws MessagingException {
+
+    public static void sendEmail_usingSMTP(String recipient,String subject, String template) throws MessagingException {
         try {
             Properties props = new Properties();
             props.put("mail.smtp.host", "smtp-relay.brevo.com");
@@ -59,6 +64,37 @@ public class EmailService {
         }
         catch(Exception e){
             logger.error("Error while sending email : {}",e.getMessage());
+            throw new  RuntimeException("Error while sending email "+e.getMessage());
+        }
+    }
+
+    public static void  sendEmail(String recipient,String subject, String template){
+        try{
+            String url = "https://api.brevo.com/v3/smtp/email";
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.set("api-key", BREVO_API_KEY);
+
+            // JSON payload
+            Map<String, Object> body = new HashMap<>();
+            Map<String, String> sender = Map.of("name", "buzzlyn", "email", "noreply@buzzlyn.com");
+            Map<String, String> to = Map.of("email", recipient, "name", "User");
+
+            body.put("sender", sender);
+            body.put("to", List.of(to));
+            body.put("subject", subject);
+            body.put("htmlContent", template);
+
+            HttpEntity<Map<String, Object>> request = new HttpEntity<>(body, headers);
+
+            ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
+            logger.info("Email sent: {}", response.getBody());
+
+        }
+        catch (Exception e){
+            logger.error("Error while sending email at sendEmail : {}",e.getMessage());
+            throw new RuntimeException("Error while sending email at sendEmail : "+e.getMessage());
         }
     }
 
@@ -76,19 +112,6 @@ public class EmailService {
     public static void main(String[] args) throws Exception {
         String htmlTemplate = loadTemplate("productUpdates.template");
 
-// Replace placeholders
-//        String finalHtml = htmlTemplate
-//                .replace("{logoUrl}","https://i.ibb.co/pvxgbFLW/g18.png")
-//                .replace("{brand}", "amazon")
-//                .replace("{productName}", "GIGABYTE Geforce RTX 5090 WINDFORCE OC pci_e_x16 32G Graphics Card, WINDFORCE Cooling System, 32GB 512-Bit GDDR7, GV-N5090WF3OC-32GD Video Card")
-//                .replace("{oldPrice}", "₹425,569")
-//                .replace("{newPrice}", "5,400")
-//                .replace("{savings}","₹120,169")
-//                .replace("{currencySymbol}","₹")
-//                .replace("{pincode}","847304")
-//                .replace("{savingsPercentage}","29")
-//                .replace("{productImageUrl}", "https://m.media-amazon.com/images/I/71hOB-2Rf5L._SL1500_.jpg")
-//                .replace("{productUrl}", "https://amzn.to/3GHRMun");
 
         String finalHtml = htmlTemplate
                 // Values from the Java example
@@ -138,6 +161,10 @@ public class EmailService {
                 .replace("{product3StockStatus}", "In Stock")
                 .replace("{product3Url}", "https://amzn.to/product3");
 
-        sendEmail("rajsudhanshu9431@gmail.com","testing", finalHtml);
+        sendEmail("rajsudhanshu9431@gmail.com","testing product update email", finalHtml);
+
+
     }
+
+
 }
