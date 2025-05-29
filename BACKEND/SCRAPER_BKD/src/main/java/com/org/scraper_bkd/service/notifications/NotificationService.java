@@ -389,6 +389,11 @@ public class NotificationService {
                 productPriceStatus="↕️ No Price Changed ";
             }
 
+            // Safely get product cards or use empty strings
+            String product1 = productCardsList.size() > 0 ? productCardsList.get(0) : "";
+            String product2 = productCardsList.size() > 1 ? productCardsList.get(1) : "";
+            String product3 = productCardsList.size() > 2 ? productCardsList.get(2) : "";
+
             String finalHtml = htmlTemplate
                     // Values from the Java example
                     .replace("{logoUrl}", BUZZLYN_LOGO)
@@ -405,9 +410,9 @@ public class NotificationService {
                     .replace("{graph}", graphImageUrl)
                     .replace("{subject}", emailListSubject)
                     .replace("<!--otherProduct-->", productCardsList.isEmpty() ? "" : "Other Products")
-                    .replace("<!--product1-->", productCardsList.get(0) != null ? productCardsList.get(0) : "")
-                    .replace("<!--product2-->", productCardsList.get(1) != null ? productCardsList.get(1) : "")
-                    .replace("<!--product3-->", productCardsList.get(2) != null ? productCardsList.get(2) : "");
+                    .replace("<!--product1-->", product1)
+                    .replace("<!--product2-->", product2)
+                    .replace("<!--product3-->", product3);
 
             EmailService.sendEmail(email, subject, finalHtml);
             logger.info("Product updates email send successfully for tracker id : {}", priceTrackerModel.getId());

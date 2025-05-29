@@ -149,8 +149,6 @@ public class PriceTrackerUserService {
                         topThreeList.add(priceTrackerModel1);
                         count++;
                     }
-                    System.out.println(topThreeList);
-                    System.out.println(graphPath);
                     notificationService.sendProductUpdateNotificationEmail(trackerUser,topThreeList,newPrice,frequency,graphUrl);
 
 
