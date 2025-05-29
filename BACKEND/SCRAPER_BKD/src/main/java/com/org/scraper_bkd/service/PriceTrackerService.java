@@ -55,7 +55,7 @@ public class PriceTrackerService {
     private final PincodeTrackerDTO pincodeTrackerDTO;
     private final ProductScraperRepo productScraperRepo;
     private final ProductHelper helper;
-    private GeminiClient geminiClient;
+    private final GeminiClient geminiClient;
 
 
     @Transactional

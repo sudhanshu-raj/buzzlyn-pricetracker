@@ -73,11 +73,8 @@ public class EmailService {
     }
 
 
-
-
-
     public static void main(String[] args) throws Exception {
-        String htmlTemplate = loadTemplate("src/main/resources/templates/email/productUpdates.template");
+        String htmlTemplate = loadTemplate("productUpdates.template");
 
 // Replace placeholders
 //        String finalHtml = htmlTemplate
@@ -141,6 +138,6 @@ public class EmailService {
                 .replace("{product3StockStatus}", "In Stock")
                 .replace("{product3Url}", "https://amzn.to/product3");
 
-        //sendEmail(finalHtml);
+        sendEmail("rajsudhanshu9431@gmail.com","testing", finalHtml);
     }
 }
