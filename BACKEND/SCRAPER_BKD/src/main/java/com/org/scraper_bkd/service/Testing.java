@@ -1,16 +1,41 @@
 package com.org.scraper_bkd.service;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.ApplicationContext;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+import org.cloudinary.json.JSONObject;
+
+import java.util.HashMap;
+
+import static com.org.scraper_bkd.constants.AppConstant.TWILIO_ACCOUNT_SID;
+import static com.org.scraper_bkd.constants.AppConstant.TWILIO_AUTH_TOKEN;
 
 
 public class Testing {
 
-
+    public static final String ACCOUNT_SID =TWILIO_ACCOUNT_SID;
+    public static final String AUTH_TOKEN = TWILIO_AUTH_TOKEN;
 
     public static void main(String[] args) {
-            String token="Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJQcmljZVJhZGFyIiwic3ViIjoicmFqc3VkaGFuc2h1OTQzMUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfVVNFUiIsImlhdCI6MTc0NTM1NzM5NywiZXhwIjoxNzQ3OTQ5Mzk3fQ.7bVEsJECZA1vO0FOrUQFz0D1IzJD8ugXbYikGTEAzJE";
-            token=token.substring(7);
-        System.out.println(token);
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+
+        String to="whatsapp:+919060117328";
+        String from ="whatsapp:+917780033828";
+
+        Message message = Message
+                .creator(new PhoneNumber(to),
+                        new PhoneNumber(from),
+                        (String)null
+                        )
+                .setContentSid("HX71dab39bf1c0283976421ddd4c147ebb")
+                .setContentVariables(new JSONObject(new HashMap<String, Object>() {
+                    {
+                        put("1", "3331");
+                    }
+                }).toString())
+                .create();
+
+        System.out.println(message.getBody());
+
     }
 }

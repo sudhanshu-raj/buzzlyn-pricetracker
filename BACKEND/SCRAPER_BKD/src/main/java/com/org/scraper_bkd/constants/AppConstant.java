@@ -67,6 +67,8 @@ public final class AppConstant {
     public static final String FRONTEND_BASE_URL=getEnv("FRONTEND_BASE_URL");
     public static final String GEMINI_API_KEY=getEnv("GEMINI_API_KEY");
     public static final String BREVO_API_KEY =getEnv("BREVO_API_KEY");
+    public static final String TWILIO_ACCOUNT_SID=getEnv("TWILIO_ACCOUNT_SID");
+    public static final String TWILIO_AUTH_TOKEN=getEnv("TWILIO_AUTH_TOKEN");
 
 }
 
