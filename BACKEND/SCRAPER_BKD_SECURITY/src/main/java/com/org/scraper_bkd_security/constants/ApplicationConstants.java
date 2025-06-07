@@ -36,5 +36,10 @@ public final class ApplicationConstants {
     public static final int PROFILE_IMG_SIZE=88;
     public static final String LOCALHOST=getEnv("LOCALHOST");
     public static final String REDIS_HOST=getEnv("localhost");
+    public static final String BREVO_API_KEY =getEnv("BREVO_API_KEY");
+    public static final String TWILIO_ACCOUNT_SID=getEnv("TWILIO_ACCOUNT_SID");
+    public static final String TWILIO_AUTH_TOKEN=getEnv("TWILIO_AUTH_TOKEN");
+    public static final String BUZZLYN_LOGO="https://i.ibb.co/pvxgbFLW/g18.png";
+
 
 }

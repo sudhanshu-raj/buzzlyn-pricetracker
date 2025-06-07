@@ -21,8 +21,8 @@ public class OtpResponseDTO {
     String pt_ky;  // here pt_ky is encoded version of otpId
 
 
-//    @JsonIgnore
-    int otp;    // for production it must be enabled the @JsonIgnore or delete this var
+   @JsonIgnore
+    int otp;
 
     @NotBlank(message = "isEmail should not blank")
     @Size(max = 5,message = "isEmail should not exceeds 5 char")

@@ -53,9 +53,12 @@ public class PriceTrackerUserService {
     public boolean checkIsStockAlert(PriceTrackerUsers trackerUser, long newPrice){
         try{
             if(trackerUser.isStockAlert()){
-                System.out.println("User opted to notify for stock alert");
+                logger.debug("User opted to notify for stock alert");
                 if(trackerUser.isPushSMSEnabled()) {
                     notificationService.checkAndSendPushNotification(trackerUser, "stock");
+                }
+                if(trackerUser.isEmailSMSEnabled()){
+                    notificationService.sendStockAlertEmail(trackerUser,newPrice);
                 }
                 return true;
             }
@@ -70,9 +73,12 @@ public class PriceTrackerUserService {
     public boolean checkIsDefaultPriceAlert(PriceTrackerUsers trackerUser, long newPrice){
         try{
             if(trackerUser.isAutomaticAlert()){
-                System.out.println("User opted to notify for automatic price alert");
+                logger.debug("User opted to notify for automatic price alert");
                 if(trackerUser.isPushSMSEnabled()) {
                     notificationService.checkAndSendPushNotification(trackerUser, "auto");
+                }
+                if(trackerUser.isEmailSMSEnabled()){
+                    notificationService.sendAutoPriceAlert(trackerUser,newPrice);
                 }
                 return true;
             }
@@ -90,6 +96,9 @@ public class PriceTrackerUserService {
                 System.out.println("User opted to notify for custom price alert");
                 if(trackerUser.isPushSMSEnabled()) {
                     notificationService.checkAndSendPushNotification(trackerUser, "customPrice");
+                }
+                if(trackerUser.isEmailSMSEnabled()){
+                    notificationService.sendCustomPriceAlert(trackerUser,newPrice);
                 }
                 return true;
             }
@@ -182,10 +191,12 @@ public class PriceTrackerUserService {
         try{
             ProductScraperModel productScraperModel = product.getProductScraperModel();
             PriceTrackerUsers trackerUser = product.getPriceTrackerUsers();
-            System.out.println("Your product is in stock ");
             if(trackerUser.isPincodeStockTracking()){
                 if(trackerUser.isPushSMSEnabled()) {
                     notificationService.checkAndSendPushNotification(trackerUser, "pincode");
+                }
+                if(trackerUser.isEmailSMSEnabled()){
+                    notificationService.sendPincodeStockAlertEmail(trackerUser);
                 }
             }
         }

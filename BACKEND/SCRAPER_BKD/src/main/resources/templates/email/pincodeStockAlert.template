@@ -76,9 +76,6 @@
     ">{brand}</span>
      <h3 style="font-size:18px;line-height:24px;font-weight:bold;color:#ffffff;margin: 15px 0px 10px 20px;">{productName}</h3>
 
-     <span style="margin:0px 0px 20px 20px;font-size: 26px;font-weight: bold;"> <span style="font-size: 16px;">{currencySymbol}</span>
-     <span style="font-style: italic;border-bottom: 1px dotted white;"> {newPrice} </span> </span>
-
      <table role="presentation" style="max-width:100%;margin:0 auto;background-color:#0f172a;padding:15px 0px;border-radius:15px;text-align:center;margin-top: 10px;">
       <tr >
             <td>

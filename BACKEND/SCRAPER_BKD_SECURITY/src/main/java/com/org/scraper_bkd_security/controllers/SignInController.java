@@ -64,7 +64,7 @@ public class SignInController {
         }
 
         String otp= signInOtpService.generateAndSendOtp(email,LOGINOTP_PREFIX);
-        return ResponseEntity.ok("OTP sent to email :: "+otp);
+        return ResponseEntity.ok("OTP sent to email ");
     }
 
     @PostMapping("/otpLogin")

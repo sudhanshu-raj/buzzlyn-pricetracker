@@ -276,8 +276,7 @@ public class NotificationService {
         }
     }
 
-
-    public void  sendPincodeStockAlertEmail(PriceTrackerUsers  priceTrackerUser,long newPrice){
+    public void  sendPincodeStockAlertEmail(PriceTrackerUsers  priceTrackerUser){
         try{
             if(priceTrackerUser==null){
                 logger.warn("Trying to send pincode stock email alert on empty price tracker user model");
@@ -305,8 +304,6 @@ public class NotificationService {
                     .replace("{logoUrl}",BUZZLYN_LOGO)
                     .replace("{brand}", brand.toLowerCase(Locale.ROOT))
                     .replace("{productName}", scraperModel.getProductName())
-                    .replace("{newPrice}", Objects.requireNonNull(ProductHelper.formatPrice(newPrice, scraperModel.getCurrency())))
-                    .replace("{currencySymbol}",CURRENCY_SYMBOLS.get(scraperModel.getCurrency()))
                     .replace("{productImageUrl}", scraperModel.getImageURL())
                     .replace("{productUrl}", scraperModel.getProductURL())
                     .replace("{subject}",subjectPreview)
@@ -317,7 +314,6 @@ public class NotificationService {
             logger.error("Error while sending email for pincode stock alert : {}",e.getMessage());
         }
     }
-
 
     public  void sendProductUpdateNotificationEmail(PriceTrackerUsers priceTrackerUser, List<PriceTrackerModel> priceTrackerModelList, long newPrice, NotificationFrequency frequency, String graphImageUrl) throws IOException {
         PriceTrackerModel priceTrackerModel = null;
@@ -422,7 +418,4 @@ public class NotificationService {
     }
 
 
-    public static void main(String[] args) {
-
-    }
 }

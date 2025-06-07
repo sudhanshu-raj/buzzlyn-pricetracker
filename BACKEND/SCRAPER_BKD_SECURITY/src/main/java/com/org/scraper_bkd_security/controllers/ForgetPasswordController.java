@@ -59,7 +59,7 @@ public class ForgetPasswordController {
             }
 
             String otp = signInOtpService.generateAndSendOtp(email, FORGETPASSWORD_OTP_PREFIX_);
-            return ResponseEntity.ok("OTP sent to email : " + otp);
+            return ResponseEntity.ok("OTP sent to email ");
         }
         catch(Exception e){
             logger.error("Unexpected error at generateForgetPasswordOtp : {}",e.getMessage());

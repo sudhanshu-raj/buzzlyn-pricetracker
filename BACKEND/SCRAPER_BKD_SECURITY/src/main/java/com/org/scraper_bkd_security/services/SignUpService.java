@@ -46,6 +46,7 @@ public class SignUpService {
     private final PasswordEncoder passwordEncoder;
     private final SignUpOtpRepo signUpOtpRepo;
     private final AvatarGenerator avatarGenerator;
+    private final NotificationService notificationService;
 
     public boolean isEmailExists(CheckUserExistsRequest data) {
         if (data == null || data.getEmail() == null || data.getEmail().trim().isEmpty()) {
@@ -142,6 +143,7 @@ public class SignUpService {
             throw new UserRegistrationException("Unexpected Error while signup", HttpStatus.INTERNAL_SERVER_ERROR,e.getMessage());
         }
     }
+
     //normal function to register through the form data
     public Customer register(CustomerDTO customerDTO){
         try {
@@ -217,6 +219,7 @@ public class SignUpService {
 
     }
 
+    //this used to send otp for both email and on phone number
     public OtpResponseDTO emailOtpSend(OtpRequestDTO otpRequest){
         Random random=new Random();
         int otp=random.nextInt(9000)+1000;
@@ -231,7 +234,7 @@ public class SignUpService {
             long id;
 
             if (otpId != null && !otpId.isEmpty()) {
-                //came here hmm, means user re-sending the otp
+                //came here , means user re-sending the otp
                 long otpId_ = decodeLoginId(otpId);
                 id = otpId_;
                 SignUpOtpManage existedData = signUpOtpRepo.findById(otpId_).orElse(null);
@@ -239,7 +242,14 @@ public class SignUpService {
                     int count = existedData.getOtpCount();
                     existedData.setOtpCount(count + 1);
                     existedData.setOtp(otp);
+                    if (isEmail_) {
+                        notificationService.sendAuthenticationOTPEmail(String.valueOf(otp), userID);
+                    }
+                    else{
+                        notificationService.sendAuthenticationOTPWBSMS(userID,String.valueOf(otp));
+                    }
                     signUpOtpRepo.save(existedData);
+
                 }
             } else {
                 //check if same userId exists
@@ -256,6 +266,12 @@ public class SignUpService {
                     topExistedData.setExpired(false);
                     topExistedData.setOtp(otp);
                     topExistedData.setOtpCount(topExistedData.getOtpCount()+1);
+                    if (isEmail_) {
+                        notificationService.sendAuthenticationOTPEmail(String.valueOf(otp), userID);
+                    }
+                    else{
+                        notificationService.sendAuthenticationOTPWBSMS(String.valueOf(otp),userID);
+                    }
                     signUpOtpRepo.save(topExistedData);
                     id=topExistedData.getId();
                 }
@@ -268,15 +284,19 @@ public class SignUpService {
                             .otpCount(0)
                             .build();
 
+                    if (isEmail_) {
+                        notificationService.sendAuthenticationOTPEmail(String.valueOf(otp), userID);
+                    }
+                    else{
+                        notificationService.sendAuthenticationOTPWBSMS(String.valueOf(otp),userID);
+                    }
                     SignUpOtpManage savedData = signUpOtpRepo.save(newData);
                     id = savedData.getId();
-                    System.out.println("id "+id);
                 }
             }
             String encodedId = encodeLoginId(id);
             return OtpResponseDTO.builder()
                     .pt_ky(encodedId)
-                    .otp(otp)
                     .isEmail(isEmail)
                     .build();
 
@@ -347,6 +367,7 @@ public class SignUpService {
         String idStr = String.valueOf(loginId);
         return Base64.getEncoder().encodeToString(idStr.getBytes(StandardCharsets.UTF_8));
     }
+
     public static long decodeLoginId(String encodedLoginId) {
         byte[] decodedBytes = Base64.getDecoder().decode(encodedLoginId);
         String decodedStr = new String(decodedBytes, StandardCharsets.UTF_8);
@@ -392,7 +413,7 @@ public class SignUpService {
     }
 
     public static void main(String[] args) {
-        SignUpService service = new SignUpService(null, null, null,null);
+        SignUpService service = new SignUpService(null, null, null,null,null);
         // Manually assign clientId and clientSecret values
         service.clientId = "781281963056-a94cg1n3k2r9sbruvvpnnsvo2raumrbm.apps.googleusercontent.com";
         service.clientSecret = "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";

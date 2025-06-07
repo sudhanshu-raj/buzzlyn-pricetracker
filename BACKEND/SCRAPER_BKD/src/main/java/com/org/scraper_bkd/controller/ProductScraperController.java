@@ -46,8 +46,5 @@ public class ProductScraperController
     }
 
 
-    @PostMapping("/sendSMS")
-    public String sendSms(@RequestParam String to, @RequestParam String message) {
-        return smsService.sendSms(to, message);
-    }
+
 }
