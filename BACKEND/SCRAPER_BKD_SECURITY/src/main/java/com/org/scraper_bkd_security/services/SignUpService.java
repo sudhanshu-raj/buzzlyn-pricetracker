@@ -229,7 +229,7 @@ public class SignUpService {
             String userID = otpRequest.getUserId();
             String isEmail = otpRequest.getIsEmail();
             String otpId = otpRequest.getOtpId();
-            boolean isEmail_ = "yes".equalsIgnoreCase(isEmail);
+            boolean isEmail_ = "yes".equalsIgnoreCase(isEmail) || "true".equalsIgnoreCase(isEmail);
 
             long id;
 

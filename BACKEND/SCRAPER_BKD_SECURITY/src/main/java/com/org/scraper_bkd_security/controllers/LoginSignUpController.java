@@ -195,12 +195,12 @@ public class LoginSignUpController {
         catch(OtpSendException e){
             logger.error(e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("UserID already exists");
+                    .body("Unable to send OTP,try again");
         }
         catch(Exception e){
             logger.error(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error generating OTP");
+                    .body("Unable to send OTP");
         }
     }
 
