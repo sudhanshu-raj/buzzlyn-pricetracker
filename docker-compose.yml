@@ -42,6 +42,9 @@ services:
       SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
       SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_REDIRECT_URI: https://buzzlyn.com/auth/login/oauth2/code/google
       SERVER_MAX_HTTP_HEADER_SIZE: ${SERVER_MAX_HTTP_HEADER_SIZE}
+      BREVO_API_KEY: ${BREVO_API_KEY}
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
     depends_on:
       mysql:
         condition: service_healthy
@@ -69,6 +72,8 @@ services:
       PYTHON_SCRAPER_URL: http://pricetrack-scraper:8000/
       PYTHON_SCRAPER_SECRETKEY: ${PYTHON_SCRAPER_SECRETKEY}
       FRONTEND_BASE_URL: https://buzzlyn.com
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
     depends_on:
       mysql:
         condition: service_healthy
