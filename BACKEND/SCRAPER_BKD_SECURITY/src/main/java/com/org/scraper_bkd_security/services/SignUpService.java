@@ -322,7 +322,8 @@ public class SignUpService {
                 result.put("invalidOtp",true);
                 return result;
             }
-            boolean isEmail = "yes".equalsIgnoreCase(verifySignUpOtpRequest.getIsEmail());
+            String isEmail_str=verifySignUpOtpRequest.getIsEmail();
+            boolean isEmail = "yes".equalsIgnoreCase(isEmail_str) || "true".equalsIgnoreCase(isEmail_str);
             if(existedData.isExpired() || isOtpExpired(existedData.getUpdated(),OTP_EXPIRE_TIME)){
                 result.put("expiredOtp",true);
                 return result;
