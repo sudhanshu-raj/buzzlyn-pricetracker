@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.Duration;
 import java.util.Random;
 
+import static com.org.scraper_bkd_security.constants.ApplicationConstants.LOGINOTP_PREFIX;
 import static com.org.scraper_bkd_security.constants.ApplicationConstants.OTP_EXPIRE_TIME;
 
 @Service
@@ -27,7 +28,7 @@ public class SignInOtpService {
             String key = prefix + email;
             redisTemplate.opsForValue().set(key, otp, Duration.ofMinutes(OTP_EXPIRE_TIME));
             // TODO: send email logic
-            if (prefix.equalsIgnoreCase("LOGINOTP_PREFIX")) {
+            if (prefix.equalsIgnoreCase(LOGINOTP_PREFIX)) {
                 notificationService.sendAuthenticationOTPEmail(otp,email);
             }
             else{

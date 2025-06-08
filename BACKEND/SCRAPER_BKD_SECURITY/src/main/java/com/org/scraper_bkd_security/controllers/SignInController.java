@@ -114,9 +114,17 @@ public class SignInController {
     @PostMapping("/passwordLogin")
     public ResponseEntity<?> loginWithPassword(@Valid @RequestBody PasswordLoginRequest request,HttpServletResponse response) {
         try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
-            );
+            Authentication authentication;
+
+            try {
+                authentication = authenticationManager.authenticate(
+                        new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+                );
+            } catch (AuthenticationException e) {
+                logger.error("Authentication failed for email: {} , error : {}", request.getEmail(), e.getMessage());
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid password");
+            }
+
             if(authentication!=null){
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 Customer customer=userRepo.findUserByEmail(request.getEmail());

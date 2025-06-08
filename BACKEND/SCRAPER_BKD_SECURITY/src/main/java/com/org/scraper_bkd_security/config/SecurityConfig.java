@@ -62,6 +62,7 @@ public class SecurityConfig {
                             "/error","/redis/*","/auth/**", "/oauth2/**", "/login/**","/tst/**").permitAll()
                         .anyRequest().authenticated()
                 )
+
                 .formLogin(form -> form.disable())  // Disable default login form
                 .httpBasic(basic -> basic.disable())  // Disable HTTP Basic if you don't need it
                 .httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomAuthenticationEntryPoint()))
@@ -97,12 +98,16 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(
             HttpSecurity http,
             UserDetailsService userDetailsService,
-            PasswordEncoder passwordEncoder) throws Exception {
+            PasswordEncoder passwordEncoder,
+            CustomAuthenticationProvider customAuthenticationProvider) throws Exception {
 
         AuthenticationManagerBuilder authBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
 
         // Register Email OTP provider
         authBuilder.authenticationProvider(emailOtpAuthenticationProvider);
+
+        // Register Custom Authentication Provider
+        authBuilder.authenticationProvider(customAuthenticationProvider);
 
         // Register DAO Provider for username/password
         DaoAuthenticationProvider daoProvider = new DaoAuthenticationProvider();

@@ -74,6 +74,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
                 String randomPassword = UUID.randomUUID().toString();
                 newUser.setPassword(passwordEncoder.encode(randomPassword));
                 newUser.setPhoneNumber("PENDING");
+                newUser.setRole("USER");
 
                 if(imageBytes!=null){
                     newUser.setImageData(imageBytes);

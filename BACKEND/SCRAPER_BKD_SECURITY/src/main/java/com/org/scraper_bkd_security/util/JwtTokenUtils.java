@@ -1,38 +1,48 @@
 package com.org.scraper_bkd_security.util;
 
 import com.org.scraper_bkd_security.constants.ApplicationConstants;
+import com.org.scraper_bkd_security.controllers.SignInController;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import static com.org.scraper_bkd_security.constants.ApplicationConstants.*;
 
 @Component
 public class JwtTokenUtils {
-
+    private static final Logger logger = LoggerFactory.getLogger(JwtTokenUtils.class);
     private SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(JWT_SECRET_DEFAULT_VALUE.getBytes(StandardCharsets.UTF_8));
     }
-    public String generateToken(String email,String role,String phoneNumber) {
-        return buildToken(email,role,phoneNumber ,JWT_EXPIRATION);
-    }
+    public String generateToken(String email, String role, String phoneNumber) {
 
-    private String buildToken(String email,String role,String phoneNumber ,Long expiration) {
-       return  Jwts.builder().issuer(JWT_ISSUER)
+        List<String> authorities = Arrays.stream(role.split(","))
+                .map(String::trim)
+                .collect(Collectors.toList());
+
+        return Jwts.builder().issuer(JWT_ISSUER)
                 .subject(email)
-                .claim("authorities",role)
-               .claim("phoneNumber",phoneNumber)
+                .claim("authorities", authorities) // Just pass the string list directly
+                .claim("phoneNumber", phoneNumber)
                 .issuedAt(new Date())
-                .expiration(new Date((new Date()).getTime() + expiration))
+                .expiration(new Date((new Date()).getTime() + JWT_EXPIRATION))
                 .signWith(getSigningKey()).compact();
     }
 
@@ -91,10 +101,10 @@ public class JwtTokenUtils {
         try{
            String token2="eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJQcmljZVJhZGFyIiwic3ViIjoidGVzdEBnbWFpLmNvbSIsInR5cGUiOiJwYXNzd29yZF9yZXNldCIsImlhdCI6MTc0NTQwMTU5NiwiZXhwIjoxNzQ1NDAxODk2fQ.S6GKw09ZP6bDFhOvRy69IIcKyeJRicRwQIY95xcx63U";
            token2=token;
-                    claims= obj.extractAllClaims(token2);
+                    claims= obj.extractAllClaims(token);
             System.out.println("clams ::"+claims);
             Boolean result=obj.validateToken(token2);
-            System.out.println("is token expired:"+result);
+            System.out.println("token not expired:"+result);
             System.out.println("username::"+obj.extractUsername(token2));
 
         }
