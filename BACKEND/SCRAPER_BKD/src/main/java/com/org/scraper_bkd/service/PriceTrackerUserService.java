@@ -18,6 +18,7 @@ import com.org.scraper_bkd.repo.PriceHistoryRepo;
 import com.org.scraper_bkd.repo.PriceTrackerRepo;
 import com.org.scraper_bkd.repo.PriceTrackerUserRepo;
 import com.org.scraper_bkd.service.notifications.NotificationService;
+import com.org.scraper_bkd.service.notifications.SmsService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -46,6 +47,7 @@ public class PriceTrackerUserService {
     private final PriceTrackerUserRepo priceTrackerUserRepo;
     private final PriceTrackerRepo priceTrackerRepo;
     private final PriceHistoryRepo priceHistoryRepo;
+    private final SmsService smsService;
 
     private static final Cloudinary cloudinary =
             new Cloudinary(CLOUDINARY_URL);
@@ -60,6 +62,10 @@ public class PriceTrackerUserService {
                 if(trackerUser.isEmailSMSEnabled()){
                     notificationService.sendStockAlertEmail(trackerUser,newPrice);
                 }
+                if(trackerUser.isPhoneSMSEnabled() || trackerUser.isWhatsappSMSEnabled()){
+                    smsService.stockAlertWBSMS(trackerUser);
+                }
+
                 return true;
             }
             return false;
@@ -80,6 +86,9 @@ public class PriceTrackerUserService {
                 if(trackerUser.isEmailSMSEnabled()){
                     notificationService.sendAutoPriceAlert(trackerUser,newPrice);
                 }
+                if(trackerUser.isPhoneSMSEnabled() || trackerUser.isWhatsappSMSEnabled()){
+                    smsService.priceAlertWBSMS(trackerUser,newPrice);
+                }
                 return true;
             }
             return false;
@@ -99,6 +108,9 @@ public class PriceTrackerUserService {
                 }
                 if(trackerUser.isEmailSMSEnabled()){
                     notificationService.sendCustomPriceAlert(trackerUser,newPrice);
+                }
+                if(trackerUser.isPhoneSMSEnabled() || trackerUser.isWhatsappSMSEnabled()){
+                    smsService.priceAlertWBSMS(trackerUser,newPrice);
                 }
                 return true;
             }
@@ -197,6 +209,9 @@ public class PriceTrackerUserService {
                 }
                 if(trackerUser.isEmailSMSEnabled()){
                     notificationService.sendPincodeStockAlertEmail(trackerUser);
+                }
+                if(trackerUser.isPhoneSMSEnabled() || trackerUser.isWhatsappSMSEnabled()){
+                    smsService.stockAlertWBSMS(trackerUser);
                 }
             }
         }

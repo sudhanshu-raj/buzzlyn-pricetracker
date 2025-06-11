@@ -147,6 +147,7 @@ public class NotificationService {
         }
     }
 
+    //for emails
     public void sendAutoPriceAlert(PriceTrackerUsers priceTrackerUser,long newPrice){
         try{
             if(priceTrackerUser==null){
@@ -215,6 +216,7 @@ public class NotificationService {
         }
     }
 
+    //for emails
     public void sendCustomPriceAlert(PriceTrackerUsers priceTrackerUser,long newPrice){
         try{
             if(priceTrackerUser==null){

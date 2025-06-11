@@ -126,11 +126,11 @@ public class ProductHelper {
         return CURRENCY_SYMBOLS.getOrDefault(code, code);
     }
 
-    public static String formatPrice(long price,String currency){
+    public static String formatPrice(long price,String currencyCode){
         try{
             String priceStr=String.valueOf(price);
             int length=priceStr.length();
-            if(currency.equalsIgnoreCase("INR")){
+            if(currencyCode.equalsIgnoreCase("INR")){
 
                 if(length<4) return priceStr;
 
