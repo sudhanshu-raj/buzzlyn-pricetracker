@@ -77,6 +77,7 @@ function PriceTrackerForm({ onProductFound, onLoading, compact = false }) {
     setIsLoading(false)
     onLoading?.(false)
   }
+  }
 
   return (
     <div className={`${styles.container} ${compact ? styles.compact : ""}`}>
