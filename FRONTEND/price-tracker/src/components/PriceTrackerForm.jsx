@@ -73,6 +73,7 @@ function PriceTrackerForm({ onProductFound, onLoading, compact = false }) {
     // Reset form
     setUrl("")
   } catch (err) {
+    console.error("Error fetching product:", err)
     setError("Something went wrong. Please try again.")
     setIsLoading(false)
     onLoading?.(false)
