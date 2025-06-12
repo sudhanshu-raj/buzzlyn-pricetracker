@@ -34,17 +34,6 @@ function PriceTrackerForm({ onProductFound, onLoading, compact = false }) {
 
     const response = await fetchProduct(url)
 
-    if (!response || typeof response.headers?.get !== 'function') {
-    throw new Error('No valid response or headers');
-  }
-
-    const contentType = response.headers.get('content-type') || '';
-
-    if (!response.ok || contentType.includes('text/html')) {
-      const errorText = await response.text(); // maybe HTML error
-      throw new Error(`Bad response: ${response.status} - ${errorText.slice(0, 200)}`);
-    }
-
     if (!response.success) {
       setError(response.error || "Failed to fetch product details")
       setIsLoading(false)
