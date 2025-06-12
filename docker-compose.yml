@@ -52,6 +52,8 @@ services:
         condition: service_started
 
   main-service:
+    mem_limit: 1.5g
+    cpus: 1.5
     build:
       context: ./BACKEND/SCRAPER_BKD
     container_name: pricetrack-main
@@ -93,6 +95,13 @@ services:
       - security-service
 
   scraper:
+    mem_limit: 1.5g
+    cpus: 1.0
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 65535
+        hard: 65535
     build:
       context: ./PYTHON_SCRAPER/Scraper_API
     container_name: pricetrack-scraper
@@ -105,6 +114,7 @@ services:
     depends_on:
       - mysql
     restart: unless-stopped
+ 
 
   nginx:
     build:

@@ -32,7 +32,7 @@ def capture_screenshot_and_pdf(url, screenshot_path="screenshot.png", pdf_path="
 #this is currently used for price scraping
 def capture_screenshot_and_pdf2(url, screenshot_path="screenshot.png", pdf_path="page.pdf"):
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)  # Headless mode
+        browser = p.chromium.launch(headless=True, args=["--no-sandbox"])  
         page = browser.new_page()
 
         # Open the page and wait for network to be idle
@@ -73,7 +73,7 @@ def capture_screenshot_with_crawl4ai(url, screenshot_path="screenshot.png"):
     """Capture screenshots using crawl4ai which has better bot detection bypass"""
     
     async def _capture_screenshot():
-        async with AsyncWebCrawler() as crawler:
+        async with AsyncWebCrawler(extra_args=["--no-sandbox"]) as crawler:
             result = await crawler.arun(
                 url=url,
                 bypass_cache=True,
@@ -98,7 +98,7 @@ def capture_screenshot_with_crawl4ai(url, screenshot_path="screenshot.png"):
 # this using playwright m which not working for some sites
 def extract_clean_html_old(url):
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
         page = browser.new_page()
 
         # Add encoding specification
@@ -124,7 +124,7 @@ def extract_clean_html(url):
     """Extract clean HTML using crawl4ai instead of playwright"""
     
     async def _extract_with_crawler():
-        async with AsyncWebCrawler() as crawler:
+        async with AsyncWebCrawler(extra_args=["--no-sandbox"]) as crawler:
             result = await crawler.arun(
                 url=url,
                 bypass_cache=True,
