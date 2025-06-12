@@ -16,6 +16,7 @@ function PriceTrackerForm({ onProductFound, onLoading, compact = false }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    try{
     if (!isAuthenticated) {
       // Redirect to the login page
       navigate("/auth", { state: { from: window.location.pathname } });
@@ -32,6 +33,15 @@ function PriceTrackerForm({ onProductFound, onLoading, compact = false }) {
     onLoading?.(true)
 
     const response = await fetchProduct(url)
+
+    const contentType = response.headers.get('content-type');
+    if (!response.ok || contentType.includes('text/html')) {
+      setError('Server error. Please try again later.');
+      setIsLoading(false)
+      onLoading?.(false)
+      return
+    }
+
     if (!response.success) {
       setError(response.error || "Failed to fetch product details")
       setIsLoading(false)
@@ -62,6 +72,10 @@ function PriceTrackerForm({ onProductFound, onLoading, compact = false }) {
 
     // Reset form
     setUrl("")
+  } catch (err) {
+    setError("Something went wrong. Please try again.")
+    setIsLoading(false)
+    onLoading?.(false)
   }
 
   return (
