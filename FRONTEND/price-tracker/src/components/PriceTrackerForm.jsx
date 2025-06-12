@@ -34,12 +34,15 @@ function PriceTrackerForm({ onProductFound, onLoading, compact = false }) {
 
     const response = await fetchProduct(url)
 
-    const contentType = response.headers.get('content-type');
+    if (!response || typeof response.headers?.get !== 'function') {
+    throw new Error('No valid response or headers');
+  }
+
+    const contentType = response.headers.get('content-type') || '';
+
     if (!response.ok || contentType.includes('text/html')) {
-      setError('Server error. Please try again later.');
-      setIsLoading(false)
-      onLoading?.(false)
-      return
+      const errorText = await response.text(); // maybe HTML error
+      throw new Error(`Bad response: ${response.status} - ${errorText.slice(0, 200)}`);
     }
 
     if (!response.success) {
