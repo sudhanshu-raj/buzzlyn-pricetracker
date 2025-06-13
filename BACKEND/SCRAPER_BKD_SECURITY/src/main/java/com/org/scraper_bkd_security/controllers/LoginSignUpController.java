@@ -243,7 +243,6 @@ public class LoginSignUpController {
         try{
             logger.debug("userId going to check for otpverified::{}",userId);
             List<SignUpOtpManage> existedData=signUpOtpRepo.findAllByUserID(userId);
-            logger.debug("Existed data: {}", existedData);
             Map<String,Boolean> response=new HashMap<>();
             response.put("isUserNeedVerification",true);
 

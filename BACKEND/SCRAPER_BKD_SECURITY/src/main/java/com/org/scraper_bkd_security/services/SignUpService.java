@@ -246,7 +246,6 @@ public class SignUpService {
                         notificationService.sendAuthenticationOTPEmail(String.valueOf(otp), userID);
                     }
                     else{
-                        logger.info("userID on which going to send the sms : {}",userID);
                         notificationService.sendAuthenticationOTPWBSMS(userID,String.valueOf(otp));
                     }
                     signUpOtpRepo.save(existedData);
@@ -271,7 +270,7 @@ public class SignUpService {
                         notificationService.sendAuthenticationOTPEmail(String.valueOf(otp), userID);
                     }
                     else{
-                        notificationService.sendAuthenticationOTPWBSMS(String.valueOf(otp),userID);
+                        notificationService.sendAuthenticationOTPWBSMS(userID,String.valueOf(otp));
                     }
                     signUpOtpRepo.save(topExistedData);
                     id=topExistedData.getId();
@@ -289,7 +288,7 @@ public class SignUpService {
                         notificationService.sendAuthenticationOTPEmail(String.valueOf(otp), userID);
                     }
                     else{
-                        notificationService.sendAuthenticationOTPWBSMS(String.valueOf(otp),userID);
+                        notificationService.sendAuthenticationOTPWBSMS(userID,String.valueOf(otp));
                     }
                     SignUpOtpManage savedData = signUpOtpRepo.save(newData);
                     id = savedData.getId();
