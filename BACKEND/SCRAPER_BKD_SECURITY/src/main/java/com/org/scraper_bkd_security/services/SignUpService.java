@@ -246,6 +246,7 @@ public class SignUpService {
                         notificationService.sendAuthenticationOTPEmail(String.valueOf(otp), userID);
                     }
                     else{
+                        logger.info("userID on which going to send the sms : {}",userID);
                         notificationService.sendAuthenticationOTPWBSMS(userID,String.valueOf(otp));
                     }
                     signUpOtpRepo.save(existedData);
