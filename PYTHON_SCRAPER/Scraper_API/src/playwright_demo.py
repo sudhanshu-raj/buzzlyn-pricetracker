@@ -31,8 +31,14 @@ def capture_screenshot_and_pdf(url, screenshot_path="screenshot.png", pdf_path="
 
 #this is currently used for price scraping
 def capture_screenshot_and_pdf2(url, screenshot_path="screenshot.png", pdf_path="page.pdf"):
+    proxy_config = {
+            "server": os.environ.get("WEBSHARE_SERVER"),
+            "username": os.environ.get("WEBSHARE_USERNAME"),
+            "password": os.environ.get("WEBSHARE_PASSWORD")
+        }
+    
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, args=["--no-sandbox"])  
+        browser = p.chromium.launch(proxy=proxy_config,headless=True, args=["--no-sandbox"])  
         page = browser.new_page()
 
         # Open the page and wait for network to be idle

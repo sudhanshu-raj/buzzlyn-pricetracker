@@ -27,8 +27,14 @@ class Scraper:
 
     async def buy_available_option_amazon(self, url):
         try:
+            proxy_config = {
+            "server": os.environ.get("WEBSHARE_SERVER"),
+            "username": os.environ.get("WEBSHARE_USERNAME"),
+            "password": os.environ.get("WEBSHARE_PASSWORD")
+            }
+            browser_config = BrowserConfig(proxy_config=proxy_config,extra_args=["--no-sandbox"])
             async with async_playwright() as p:
-                browser = await p.chromium.launch(headless=True, args=["--no-sandbox"])
+                browser = await p.chromium.launch(proxy=proxy_config,headless=True, args=["--no-sandbox"])
                 page = await browser.new_page()
 
                 # Add encoding specification
@@ -134,13 +140,13 @@ class Scraper:
         product_details["physical_product"] = True
         product_details["currency"] = "INR"
         proxy_config = {
-            "server": os.environ.get("ZENROWS_SERVER"),
-            "username": os.environ.get("ZENROWS_USERNAME"),
-            "password": os.environ.get("ZENROWS_PASSWORD")
+            "server": os.environ.get("WEBSHARE_SERVER"),
+            "username": os.environ.get("WEBSHARE_USERNAME"),
+            "password": os.environ.get("WEBSHARE_PASSWORD")
         }
         browser_config = BrowserConfig(proxy_config=proxy_config,extra_args=["--no-sandbox"])
         try:
-            async with AsyncWebCrawler(extra_args=["--no-sandbox"]) as crawler:  # config=browser_config
+            async with AsyncWebCrawler(browser_config=browser_config) as crawler:  # config=browser_config
                 result = await crawler.arun(url=url,
                                             bypass_cache=True,
                                             page_timeout=10000,
@@ -381,8 +387,13 @@ class Scraper:
         pincode = self.pincode
         product_details = {}
         try:
+            proxy_config = {
+            "server": os.environ.get("WEBSHARE_SERVER"),
+            "username": os.environ.get("WEBSHARE_USERNAME"),
+            "password": os.environ.get("WEBSHARE_PASSWORD")
+        }
             async with async_playwright() as p:
-                browser = await p.chromium.launch(headless=True, slow_mo=100, args=["--no-sandbox"])
+                browser = await p.chromium.launch(proxy=proxy_config,headless=True, slow_mo=100, args=["--no-sandbox"])
                 context = await browser.new_context(
                     viewport={"width": 1920, "height": 1080},
                     user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
@@ -477,7 +488,13 @@ class Scraper:
                 sys.stdout.reconfigure(encoding='utf-8')
 
             logger.info("Starting web crawling...")
-            async with AsyncWebCrawler(verbose=True, headless=True,extra_args=["--no-sandbox"]) as crawler:
+            proxy_config = {
+            "server": os.environ.get("WEBSHARE_SERVER"),
+            "username": os.environ.get("WEBSHARE_USERNAME"),
+            "password": os.environ.get("WEBSHARE_PASSWORD")
+            }
+            browser_config = BrowserConfig(proxy_config=proxy_config,extra_args=["--no-sandbox"])
+            async with AsyncWebCrawler(browser_config=browser_config) as crawler:
                 result = await crawler.arun(
                     url=url,
                     page_timeout=10000,
@@ -737,8 +754,14 @@ class Scraper:
         delivery_details = {}
 
         try:
+            proxy_config = {
+            "server": os.environ.get("WEBSHARE_SERVER"),
+            "username": os.environ.get("WEBSHARE_USERNAME"),
+            "password": os.environ.get("WEBSHARE_PASSWORD")
+            }
+       
             async with async_playwright() as p:
-                browser = await p.chromium.launch(headless=True, args=["--no-sandbox"])
+                browser = await p.chromium.launch(proxy=proxy_config,headless=True, args=["--no-sandbox"])
                 page = await browser.new_page()
 
                 # Open the URL
@@ -815,14 +838,14 @@ class Scraper:
             sys.stdout.reconfigure(encoding='utf-8')
 
         proxy_config = {
-            "server": os.environ.get("ZENROWS_SERVER"),
-            "username": os.environ.get("ZENROWS_USERNAME"),
-            "password": os.environ.get("ZENROWS_PASSWORD")
+            "server": os.environ.get("WEBSHARE_SERVER"),
+            "username": os.environ.get("WEBSHARE_USERNAME"),
+            "password": os.environ.get("WEBSHARE_PASSWORD")
         }
         browser_config = BrowserConfig(proxy_config=proxy_config,extra_args=["--no-sandbox"])
         try:
 
-            async with AsyncWebCrawler(extra_args=["--no-sandbox"]
+            async with AsyncWebCrawler(browser_config=browser_config
             ) as crawler:
                 result = await crawler.arun(url=url,
                                             bypass_cache=True,
