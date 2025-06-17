@@ -562,8 +562,18 @@ class Scraper:
 
             buy_now_btn = soup.find(
                 "button", class_="QqFHMw vslbG+ _3Yl67G _7Pd1Fp")
+            
+            # check if product is out of stock for pincode only ?
+            check_is_pincode_available=soup.find("div", class_="nyRpc8")
+            pincode_availability=True
+            if check_is_pincode_available:
+                pincode_text = check_is_pincode_available.get_text(strip=True)
+                logger.info(f"pincode_text: {pincode_text}")
+                if "out of stock" in pincode_text:
+                   pincode_availability = False
+    
             if buy_now_btn:
-                if "disabled" in buy_now_btn.attrs:
+                if "disabled" in buy_now_btn.attrs and not pincode_availability:
                     product_details["stock"] = "out_stock"
                     print("❌ Product is out of stock! 'Buy Now' is disabled.")
                 else:
