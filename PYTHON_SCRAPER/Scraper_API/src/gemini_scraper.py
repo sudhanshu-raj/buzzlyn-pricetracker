@@ -28,7 +28,7 @@ def extract_from_html(html_content):
             food delivery apps,digital goods (e-books, software, subscriptions), and services.
             
             Extract the following details only if the product is a physical item:
-            Stock Status: Check if the product is in stock or out of stock.
+            Stock Status: Check if the product is in stock or out of stock globally. Ignore pincode-specific availability messages such as "Unavailable in your area" or "Not deliverable to this pincode" — these do not indicate that the product is out of stock.
             Title: Extract the product’s exact name.
             Price: Capture the current selling price without the currency symbol if there and in long format only.
             MRP: Extract the maximum retail price (if available)  without the currency symbol if there and in long format only.
