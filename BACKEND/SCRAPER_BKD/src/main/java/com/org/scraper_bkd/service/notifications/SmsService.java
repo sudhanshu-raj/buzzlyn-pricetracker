@@ -35,18 +35,17 @@ public class SmsService {
             }
             ProductScraperModel scraperModel=priceTrackerModel.getProductScraperModel();
             String product_name= scraperModel.getProductName();
-            if(product_name.length()>50){
-                product_name=product_name.substring(0,50)+"...";
+            if(product_name.length()>100){
+                product_name=product_name.substring(0,100)+"...";
             }
-            String brand= scraperModel.getBrand();
+            String brand= scraperModel.getBrand().split("\\.")[0];
             String currency_code= scraperModel.getCurrency();
             String currency_symbol= ProductHelper.getCurrencySymbol(currency_code);
             String old_price=currency_symbol+" "+ProductHelper.formatPrice(priceTrackerModel.getFirst_time_price(),currency_code);
             String new_price=currency_symbol+" "+ProductHelper.formatPrice(newPrice,currency_code);
             String product_url= scraperModel.getProductURL();
-            String product_image= scraperModel.getImageURL();
 
-            twilioSMS.sendPriceAlertSMS(to,product_name,brand,old_price,new_price,product_url,product_image);
+            twilioSMS.sendPriceAlertSMS(to,product_name,brand,old_price,new_price,product_url);
 
         }
         catch(Exception e){
@@ -65,13 +64,13 @@ public class SmsService {
         ProductScraperModel scraperModel=priceTrackerModel.getProductScraperModel();
             String to=trackerUser.getPhoneNumber();
             String product_name= scraperModel.getProductName();
-            if(product_name.length()>50){
-                product_name=product_name.substring(0,50)+"...";
+            if(product_name.length()>100){
+                product_name=product_name.substring(0,100)+"...";
             }
             String product_url= scraperModel.getProductURL();
             String product_image= scraperModel.getImageURL();
 
-            twilioSMS.sendStockAlertSMS(to,product_name,product_url,product_image);
+            twilioSMS.sendStockAlertSMS(to,product_name,product_url,scraperModel.getBrand().split("\\.")[0]);
         }
         catch(Exception e){
             logger.error("Error at stockAlertWBSMS : {}",e.getMessage());

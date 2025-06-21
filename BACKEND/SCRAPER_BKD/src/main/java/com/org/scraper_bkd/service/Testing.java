@@ -22,11 +22,8 @@ public class Testing {
 
     public static void main(String[] args) throws UnsupportedEncodingException {
 
-        String product_name= "Fedger® Laptop Cooling Pad with 3 Heavy Duty Fans jkjkjkjkjkjkjkj";
-        if(product_name.length()>50){
-            product_name=product_name.substring(0,50)+"...";
-        }
-        System.out.println(product_name);
+       String brand="amazon.com";
+        System.out.println((brand.split("\\.")[0]));
 
     }
 
@@ -43,14 +40,14 @@ public class Testing {
 //        variables.put("to","Rs 1,120");
         variables.put("product_url", "https://amzn.to/43F8yC8");
 
-        String productImage="https://m.media-amazon.com/images/I/51LCVDPpqAL._SL1100_.jpg";
+        String productImage="https://rukminim2.flixcart.com/image/416/416/xif0q/monitor/m/1/u/-original-imah5c99hmasfzcm.jpeg?q=70&crop=false";
 
         Message message = Message.creator(
                         new PhoneNumber(to),
                         new PhoneNumber(from),
                         (String)null
                 )
-                .setContentSid("HXb32b9c4b1f0e02641b332b8bdde1147e") // Your Content SID from Twilio template
+                .setContentSid("HX38f88c44d7c6553a453aced8372aa763") // Your Content SID from Twilio template
                 .setContentVariables(variables.toString())
                 .setMediaUrl(
                         Arrays.asList(URI.create(productImage))

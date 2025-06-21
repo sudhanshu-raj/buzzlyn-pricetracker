@@ -263,9 +263,15 @@ public class PriceTrackerUserService {
 
     @Transactional
     public void testing() throws IOException {
-        PriceTrackerUsers trackerUsers=priceTrackerUserRepo.findById(31L).orElse(null);
+        PriceTrackerUsers trackerUsers=priceTrackerUserRepo.findById(41L).orElse(null);
+        if (trackerUsers!=null){
+            System.out.println("tracker user id:"+trackerUsers.getId());
+        }
+        else{
+            System.out.println("tracker user is null");
+        }
 
-        checkNotificationFrequency(trackerUsers,200L);
+        checkIsDefaultPriceAlert(trackerUsers,2000L);
 
 
 

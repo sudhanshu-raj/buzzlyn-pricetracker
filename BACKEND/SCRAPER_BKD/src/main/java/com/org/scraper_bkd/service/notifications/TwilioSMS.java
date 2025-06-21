@@ -23,7 +23,7 @@ public class TwilioSMS {
     public static final String ACCOUNT_SID =TWILIO_ACCOUNT_SID;
     public static final String AUTH_TOKEN = TWILIO_AUTH_TOKEN;
 
-    public void sendPriceAlertSMS(String to , String productName,String brand,String old_price,String new_price,String product_url,String product_image){
+    public void sendPriceAlertSMS(String to , String productName,String brand,String old_price,String new_price,String product_url){
         try {
             Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
@@ -43,11 +43,8 @@ public class TwilioSMS {
                             new PhoneNumber(from),
                             (String) null
                     )
-                    .setContentSid("HX38f88c44d7c6553a453aced8372aa763") // Your Content SID from Twilio template
+                    .setContentSid("HXccbd7b4277bb67db45486e109142887d") // Your Content SID from Twilio template
                     .setContentVariables(variables.toString())
-                    .setMediaUrl(
-                            Arrays.asList(URI.create(product_image))
-                    )
                     .create();
 
             logger.info("Sent price alert message, SID: " + message.getSid());
@@ -57,7 +54,7 @@ public class TwilioSMS {
         }
     }
 
-    public void sendStockAlertSMS(String to , String productName,String product_url,String product_image){
+    public void sendStockAlertSMS(String to , String productName,String product_url,String brand){
         try {
             Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
@@ -65,8 +62,9 @@ public class TwilioSMS {
             String from = "whatsapp:+917780033828";
 
             JSONObject variables = new JSONObject();
-            variables.put("product_name", productName);
-            variables.put("product_url", product_url);
+            variables.put("_name", productName);
+            variables.put("brand",brand);
+            variables.put("product_addr", product_url);
 
 
             Message message = Message.creator(
@@ -74,11 +72,11 @@ public class TwilioSMS {
                             new PhoneNumber(from),
                             (String) null
                     )
-                    .setContentSid("HXb32b9c4b1f0e02641b332b8bdde1147e") // Your Content SID from Twilio template
+                    .setContentSid("HX7d600ef0691f92273dbeaf04d83d53d9") // Your Content SID from Twilio template
                     .setContentVariables(variables.toString())
-                    .setMediaUrl(
-                            Arrays.asList(URI.create(product_image))
-                    )
+//                    .setMediaUrl(
+//                            Arrays.asList(URI.create(product_image))
+//                    )
                     .create();
 
             logger.info("Sent stock alert message, SID: " + message.getSid());
@@ -89,6 +87,12 @@ public class TwilioSMS {
     }
 
 
+    public static void main(String[] args) {
+        TwilioSMS twilioSMS=new TwilioSMS();
+        String producturl="https://www.flipkart.com";
+        String productImage="https://rukminim2.flixcart.com/image/416/416/xif0q/monitor/m/1/u/-original-imah5c99hmasfzcm.jpeg?q=70&crop=false";
+        twilioSMS.sendStockAlertSMS("+919060117328","Monitor Gaming",producturl,"flipkart");
+    }
 
 
 }
