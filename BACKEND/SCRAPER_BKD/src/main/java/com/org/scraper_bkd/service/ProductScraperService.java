@@ -49,7 +49,7 @@ public class ProductScraperService {
     private final PriceTrackerRepo priceTrackerRepo;
     private final PriceHistoryRepo priceHistoryRepo;
     private final GeminiClient geminiClient;
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
 
     public ProductScraperModel getProductDetails(String url) {
