@@ -19,6 +19,7 @@ import com.org.scraper_bkd.repo.PriceHistoryRepo;
 import com.org.scraper_bkd.repo.PriceTrackerRepo;
 import com.org.scraper_bkd.repo.ProductScraperRepo;
 import com.org.scraper_bkd.utils.ProductHelper;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,6 +49,7 @@ public class ProductScraperService {
     private final PriceTrackerRepo priceTrackerRepo;
     private final PriceHistoryRepo priceHistoryRepo;
     private final GeminiClient geminiClient;
+    private EntityManager entityManager;
 
 
     public ProductScraperModel getProductDetails(String url) {
@@ -78,6 +80,7 @@ public class ProductScraperService {
                     productScraperRepo.updateReviews(productScraperDTO.getReviews(), existedProductID);
                 }
                 System.out.println("returning existed product data");
+                entityManager.clear();
                 return searchProductData_byID(existedProductID);
             } else {
                 ProductScraperModel productScraperModel = ProductScraperModel.builder()
