@@ -41,7 +41,8 @@ public class NotificationService {
                 PriceTrackerModel priceTrackerModel = priceTrackerRepo.findByPriceTrackerUser_Id(priceTrackerUser.getId());
                 if (priceTrackerModel != null) {
                     ProductScraperModel productScraperModel = priceTrackerModel.getProductScraperModel();
-                    String productName = productScraperModel.getProductName().substring(0, 51);
+                    String productName = productScraperModel.getProductName().length()>52 ? productScraperModel.getProductName().substring(0, 51) :
+                            productScraperModel.getProductName();
                     String brand = productScraperModel.getBrand();
                     brand = brand.split("\\.")[0].toUpperCase();
                     String title = null;
@@ -125,7 +126,9 @@ public class NotificationService {
             }
             String email = priceTrackerUser.getEmail();
             String brand = scraperModel.getBrand().split("\\.")[0];
-            String productNameMod=scraperModel.getProductName().substring(0,35)+" ...";
+            String productNameMod=scraperModel.getProductName().length()>35 ?
+                    scraperModel.getProductName().substring(0,35)+" ..." :
+                    scraperModel.getProductName();
             brand = brand.isEmpty() ? "" : Character.toUpperCase(brand.charAt(0)) + brand.substring(1);
             String subject =brand+" Stock Alert | "+productNameMod;
             String rawTemplate=EmailService.loadTemplate("stockAlert.template");
@@ -167,7 +170,9 @@ public class NotificationService {
 
             String email = priceTrackerUser.getEmail();
             String brand = scraperModel.getBrand().split("\\.")[0];
-            String productNameMod=scraperModel.getProductName().substring(0,35)+" ...";
+            String productNameMod=scraperModel.getProductName().length()>35 ?
+                    scraperModel.getProductName().substring(0,35)+" ..." :
+                    scraperModel.getProductName();
             brand = brand.isEmpty() ? "" : Character.toUpperCase(brand.charAt(0)) + brand.substring(1);
             String subject =brand+" Price Drop Alert | "+productNameMod;
 
@@ -236,7 +241,9 @@ public class NotificationService {
 
             String email = priceTrackerUser.getEmail();
             String brand = scraperModel.getBrand().split("\\.")[0];
-            String productNameMod=scraperModel.getProductName().substring(0,35)+" ...";
+            String productNameMod=scraperModel.getProductName().length()>35 ?
+                    scraperModel.getProductName().substring(0,35)+" ..." :
+                    scraperModel.getProductName();
             brand = brand.isEmpty() ? "" : Character.toUpperCase(brand.charAt(0)) + brand.substring(1);
             String subject =brand+" Price Matched | "+productNameMod;
 
@@ -296,7 +303,9 @@ public class NotificationService {
             }
             String email = priceTrackerUser.getEmail();
             String brand = scraperModel.getBrand().split("\\.")[0];
-            String productNameMod=scraperModel.getProductName().substring(0,35)+" ...";
+            String productNameMod=scraperModel.getProductName().length()>35 ?
+                    scraperModel.getProductName().substring(0,35)+" ..." :
+                    scraperModel.getProductName();
             brand = brand.isEmpty() ? "" : Character.toUpperCase(brand.charAt(0)) + brand.substring(1);
             String subject =brand+" Pincode Stock Alert | "+productNameMod;
             String rawTemplate=EmailService.loadTemplate("pincodeStockAlert.template");
@@ -340,7 +349,9 @@ public class NotificationService {
                 ProductScraperModel productScraperModel = priceTrackerModel1.getProductScraperModel();
 
                 String brand = productScraperModel.getBrand().split("\\.")[0];
-                String productNameMod = productScraperModel.getProductName().substring(0, 30) + " ...";
+                String productNameMod=scraperModel.getProductName().length()>35 ?
+                        scraperModel.getProductName().substring(0,35)+" ..." :
+                        scraperModel.getProductName();
                 long oldPrice = priceTrackerModel1.getFirst_time_price();
                 long newPrice1 = productScraperModel.getPrice();
                 String currency = CURRENCY_SYMBOLS.get(productScraperModel.getCurrency());
@@ -371,7 +382,9 @@ public class NotificationService {
 
             String email = priceTrackerUser.getEmail();
             String brand = scraperModel.getBrand().split("\\.")[0];
-            String productNameMod = scraperModel.getProductName().substring(0, 35) + " ...";
+            String productNameMod=scraperModel.getProductName().length()>35 ?
+                    scraperModel.getProductName().substring(0,35)+" ..." :
+                    scraperModel.getProductName();
             brand = brand.isEmpty() ? "" : Character.toUpperCase(brand.charAt(0)) + brand.substring(1);
             String subject = brand + " Product Updates of " + productNameMod;
             String emailListSubject= frequency==NotificationFrequency.CUSTOM ? "Your":frequency.name().toLowerCase(Locale.ROOT)+" Product Updates 📰";
