@@ -173,7 +173,7 @@ export function Navbar() {
                         </div>
                       </div>
                       <div className={styles.dropdownLinks}>
-                        <Link to="/profile" className={styles.dropdownLink}>
+                        <Link to="/dashboard" className={styles.dropdownLink}>
                           <User className={styles.dropdownIcon} />
                           Your Dashboard
                         </Link>

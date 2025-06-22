@@ -1,3 +1,10 @@
+# import sys
+# import os
+
+# # Add the parent directory to the Python path
+# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+
 import asyncio
 import re
 from src.custom_logger import get_logger
@@ -1083,8 +1090,8 @@ class Scraper:
 
 
 if __name__ == "__main__":
-    url = "https://www.flipkart.com/samsung-galaxy-s23-5g-cream-256-gb/p/itm745d4b532623e?pid=MOBGMFFXURCVYANE&lid=LSTMOBGMFFXURCVYANE4SRNTK&marketplace=FLIPKART&q=s23+5g&store=tyy%2F4io&srno=s_1_2&otracker=AS_QueryStore_OrganicAutoSuggest_2_4_na_na_na&otracker1=AS_QueryStore_OrganicAutoSuggest_2_4_na_na_na&fm=organic&iid=961e2df6-e6d5-4478-81d2-b7a44f32cf9e.MOBGMFFXURCVYANE.SEARCH&ppt=browse&ppn=browse&ssid=e0xucloqv40000001745438495827&qH=bec108eabfca89fd"
+    url = "https://www.croma.com/oneplus-nord-4-5g-8gb-ram-256gb-obsidian-midnight-/p/308680"
     obj = Scraper(url, "846001")
     # result = asyncio.run(obj.scrape())
-    result = asyncio.run(obj.get_delivery_date())
+    result = asyncio.run(obj.scrape())
     print(result)
