@@ -30,7 +30,7 @@ function HeroSection() {
                 How It Works
               </a>
             </div>
-            <div className={styles.stats}>
+            {/* <div className={styles.stats}>
               {[
                 { value: "50K+", label: "Active Users" },
                 { value: "$2.5M", label: "Money Saved" },
@@ -41,7 +41,7 @@ function HeroSection() {
                   <div className={styles.statLabel}>{stat.label}</div>
                 </div>
               ))}
-            </div>
+            </div> */}
           </motion.div>
 
           <motion.div
