@@ -180,6 +180,7 @@ async def scrape_product_price(request: Scraper_DeliveryDetails):
 
 
 if __name__ == "__main__":
+    print("Starting FastAPI server...")
     import uvicorn
     uvicorn.run(
     "src.main:app", 
