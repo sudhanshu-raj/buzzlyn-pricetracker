@@ -39,7 +39,7 @@ public class PriceTrackerController {
     private final PriceTrackerService priceTrackerService;
     private final ProductScraperService productScraperService;
 
-
+    // This saves the tracker request after the user fetches product data.
     @PostMapping("/priceTrackerRequest")
     public ResponseEntity<?> saveTrackerRequest(@Valid @RequestBody PriceTrackerRequest priceTrackerRequest) {
         try {
