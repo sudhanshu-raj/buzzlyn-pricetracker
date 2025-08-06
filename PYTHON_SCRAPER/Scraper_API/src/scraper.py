@@ -1,7 +1,11 @@
 import asyncio
+import sys
+
+if sys.platform == "win32":
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
 import re
 from src.custom_logger import get_logger
-import sys
 import os
 import src.helper_functions as HF
 from crawl4ai.async_configs import BrowserConfig
@@ -1083,7 +1087,7 @@ class Scraper:
 
 
 if __name__ == "__main__":
-    url = "https://www.croma.com/oneplus-nord-4-5g-8gb-ram-256gb-obsidian-midnight-/p/308680"
+    url = "https://www.flipkart.com/samsung-odyssey-g6-68-58-cm-27-inch-quad-hd-oled-panel-dynamic-cooling-sleek-metal-design-glare-free-height-adjustable-gaming-monitor-ls27dg600swxxl/p/itm598778fd9c547?pid=MONHF2H9H4V8X3GY&lid=LSTMONHF2H9H4V8X3GYMXWIMT&marketplace=FLIPKART&q=oled+monitor&store=6bo%2Fg0i%2F9no&srno=s_1_3&otracker=AS_Query_OrganicAutoSuggest_3_4_na_na_na&otracker1=AS_Query_OrganicAutoSuggest_3_4_na_na_na&fm=search-autosuggest&iid=dd4d7dac-4c6f-4726-8587-4fe05eeffc1c.MONHF2H9H4V8X3GY.SEARCH&ppt=sp&ppn=sp&ssid=ra9md8flv40000001753212200522&qH=0e7ce048444f3e76"
     obj = Scraper(url, "846001")
     # result = asyncio.run(obj.scrape())
     result = asyncio.run(obj.scrape())

@@ -1,11 +1,20 @@
+import sys
+import asyncio
+import io
+
+
+if sys.platform == "win32":
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    # Set UTF-8 encoding for Windows
+    sys.stdout = io.TextIOWrapper(
+        sys.stdout.buffer, encoding='utf-8', errors='replace')
+    sys.stderr = io.TextIOWrapper(
+        sys.stderr.buffer, encoding='utf-8', errors='replace')
+    
 from fastapi import FastAPI, HTTPException, Depends, Security
 from fastapi.security import APIKeyHeader
 from pydantic import BaseModel
 from src.scraper import Scraper  # Import your Scraper class
-import asyncio
-# Add at the top of your file
-import sys
-import io
 from src.custom_logger import get_logger
 import os
 import src.helper_functions as HF
@@ -20,13 +29,7 @@ load_dotenv()
 logger = get_logger(__name__, log_file="api_call.log")
 logger.info("This is an info message from from FastAPI calls class")
 
-if sys.platform == "win32":
-    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
-    # Set UTF-8 encoding for Windows
-    sys.stdout = io.TextIOWrapper(
-        sys.stdout.buffer, encoding='utf-8', errors='replace')
-    sys.stderr = io.TextIOWrapper(
-        sys.stderr.buffer, encoding='utf-8', errors='replace')
+
 
 # Add API key security setup
 API_KEY_NAME = "Scraper-API"
@@ -186,7 +189,7 @@ if __name__ == "__main__":
     "src.main:app", 
     host="0.0.0.0", 
     port=8000,
-    workers=4,
+   # workers=4,
     proxy_headers=True,
     access_log=True
 )
