@@ -39,7 +39,7 @@ public class JwtTokenUtils {
 
         return Jwts.builder().issuer(JWT_ISSUER)
                 .subject(email)
-                .claim("authorities", authorities) // Just pass the string list directly
+                .claim("authorities", authorities) 
                 .claim("phoneNumber", phoneNumber)
                 .issuedAt(new Date())
                 .expiration(new Date((new Date()).getTime() + JWT_EXPIRATION))

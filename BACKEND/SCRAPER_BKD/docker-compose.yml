@@ -5,29 +5,33 @@ services:
     build: .
     ports:
       - "8082:8082"
+    env_file:
+      - .env
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/Scraper?createDatabaseIfNotExist=true
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=!grea8One12345
-      - JWT_SECRET=LxgKD32LseXHuPq8VMs3yYFNLadudQ53YUn4
-      - WEBPUSH_PUBLIC_KEY=BLzc_LUkNVhLWv-8lDqgpG2yPMWCxZb6h5SFSqvK-_rt3P-UxXg9AUra1Vy-tM6hudJNqHGR4L-__H5X6Sssp88
-      - WEBPUSH_PRIVATE_KEY=Sn_z2AAo6qYs_PActNrzyWWE4VkAWhiLQwpwsF5kgx8
-      - WEBPUSH_MAIL=mailto:rajsudhanshu9431@gmail.com
-      - BREVO_USERNAME=7e5cbc001@smtp-brevo.com
-      - BREVO_PASSWORD=gbFBSfRj7qwskxH6
-      - CLOUDINARY_URL=cloudinary://197768488225743:PD_wKvRGydGmcLpNxZcyDbPbNaM@duscp44oq
-      - MY_JWT_SECRET=LxgKD32LseXHuPq8VMs3yYFNLadudQ53YUn4
-      - PYTHON_SCRAPER_URL=http://host.docker.internal:8000
-      - PYTHON_SCRAPER_SECRETKEY=AIzaSyDV7niwpxyplcLiimbmA-5idmj0gVmfo14
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+      - WEBPUSH_PUBLIC_KEY=${WEBPUSH_PUBLIC_KEY}
+      - WEBPUSH_PRIVATE_KEY=${WEBPUSH_PRIVATE_KEY}
+      - WEBPUSH_MAIL=${WEBPUSH_MAIL}
+      - BREVO_USERNAME=${BREVO_USERNAME}
+      - BREVO_PASSWORD=${BREVO_PASSWORD}
+      - CLOUDINARY_URL=${CLOUDINARY_URL}
+      - MY_JWT_SECRET=${MY_JWT_SECRET}
+      - PYTHON_SCRAPER_URL=${PYTHON_SCRAPER_URL}
+      - PYTHON_SCRAPER_SECRETKEY=${PYTHON_SCRAPER_SECRETKEY}
     depends_on:
       - db
 
   db:
     image: mysql:8.0
     restart: always
+    env_file:
+      - .env
     environment:
-      - MYSQL_ROOT_PASSWORD=!grea8One12345
-      - MYSQL_DATABASE=Scraper
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
     ports:
       - "3307:3306"
     volumes:

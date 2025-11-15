@@ -6,18 +6,14 @@ import java.util.*;
 
 public final class AppConstant {
 
-    // Use a try-catch to gracefully handle missing .env file
     static Dotenv dotenv;
     static {
         try {
             dotenv = Dotenv.load();
         } catch (Exception e) {
-            // Fall back to an empty implementation if .env file is not found
             dotenv = Dotenv.configure().ignoreIfMissing().load();
         }
     }
-
-    // Use System.getenv() as fallback when dotenv returns null
     private static String getEnv(String key) {
         String value = dotenv.get(key);
         return value != null ? value : System.getenv(key);
@@ -49,7 +45,6 @@ public final class AppConstant {
         CURRENCY_SYMBOLS.put("RUB", "₽");
         CURRENCY_SYMBOLS.put("BRL", "R$");
         CURRENCY_SYMBOLS.put("ZAR", "R");
-        // Add more if needed
     }
 
     public static final String WEBPUSH_PUBLIC_KEY=getEnv("WEBPUSH_PUBLIC_KEY");
@@ -60,7 +55,7 @@ public final class AppConstant {
     public static final String BREVO_USERNAME=getEnv("BREVO_USERNAME");
     public static final String BREVO_PASSWORD=getEnv("BREVO_PASSWORD");
     public static final String BUZZLYN_LOGO="https://i.ibb.co/pvxgbFLW/g18.png";
-    public static final String DASHBOARD_URL="https://buzzlyn.com/dashboard";
+    public static final String DASHBOARD_URL="http://localhost:8080/dashboard";
     public static final String CLOUDINARY_URL=getEnv("CLOUDINARY_URL");
     public static final String PYTHON_SCRAPER_URL=getEnv("PYTHON_SCRAPER_URL");
     public static final String PYTHON_SCRAPER_SECRETKEY=getEnv("PYTHON_SCRAPER_SECRETKEY");

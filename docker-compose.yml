@@ -5,7 +5,7 @@ services:
     image: mysql:8.0
     container_name: pricetrack-mysql
     ports:
-      - "127.0.0.1:3306:3306"
+      - "127.0.0.1:3307:3306"
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
       interval: 5s
@@ -37,16 +37,19 @@ services:
       SPRING_DATA_REDIS_PORT: 6379
       SPRING_DATA_REDIS_DATABASE: 1
       JWT_SECRET: ${JWT_SECRET}
-      LOCALHOST: buzzlyn.com
-      FRONTEND_BASE_URL: https://buzzlyn.com
+      LOCALHOST: localhost
+      FRONTEND_BASE_URL: http://localhost:8080
       BACKEND_SPRING_MAIN_MODULE:  http://pricetrack-main:8082/
       SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
       SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
-      SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_REDIRECT_URI: https://buzzlyn.com/auth/login/oauth2/code/google
+      SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_REDIRECT_URI: http://localhost:8080/auth/login/oauth2/code/google
       SERVER_MAX_HTTP_HEADER_SIZE: ${SERVER_MAX_HTTP_HEADER_SIZE}
       BREVO_API_KEY: ${BREVO_API_KEY}
       TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
       TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
+      TWILIO_PHONE_NUMBER: ${TWILIO_PHONE_NUMBER}
+      GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
+      GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
     depends_on:
       mysql:
         condition: service_healthy
@@ -75,9 +78,10 @@ services:
       MY_JWT_SECRET: ${JWT_SECRET}
       PYTHON_SCRAPER_URL: http://pricetrack-scraper:8000/
       PYTHON_SCRAPER_SECRETKEY: ${PYTHON_SCRAPER_SECRETKEY}
-      FRONTEND_BASE_URL: https://buzzlyn.com
+      FRONTEND_BASE_URL: http://localhost:8080
       TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
       TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
+      TWILIO_PHONE_NUMBER: ${TWILIO_PHONE_NUMBER}
     depends_on:
       mysql:
         condition: service_healthy
@@ -87,10 +91,10 @@ services:
   frontend:
     build:
       context: ./FRONTEND/price-tracker
-      args:  # Use args instead of environment
+      args:  
         VITE_VAPID_PUBLIC_KEY: ${VITE_VAPID_PUBLIC_KEY}
-        VITE_SECURITY_BASE_URL: https://buzzlyn.com/auth
-        VITE_SCRAPER_BASE_URL: https://buzzlyn.com/api
+        VITE_SECURITY_BASE_URL: http://localhost:8080
+        VITE_SCRAPER_BASE_URL: http://localhost:8080/api
     container_name: pricetrack-frontend
     depends_on:
       - main-service
@@ -130,8 +134,8 @@ services:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
     ports:
-      - "80:80"
-      - "443:443"
+      - "8080:80"
+      - "8443:443"
     restart: always
   certbot:
     image: certbot/certbot

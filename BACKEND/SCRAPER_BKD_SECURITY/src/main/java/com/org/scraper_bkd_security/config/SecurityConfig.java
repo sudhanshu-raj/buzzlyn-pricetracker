@@ -83,7 +83,13 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
                 FRONTEND_BASE_URL,
-                BACKEND_SPRING_MAIN_MODULE  // 👈 Add this
+                BACKEND_SPRING_MAIN_MODULE,  // 👈 existing
+                "http://localhost",
+                "https://localhost",
+                "http://localhost:3000",
+                "http://localhost:5173",
+                "http://localhost:8080",
+                "https://localhost:8443"
         ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
