@@ -1,4 +1,4 @@
-# Buzzlyn PriceTracker — Minimal README
+# Buzzlyn PriceTracker 
 
 **Overview**
 
@@ -23,3 +23,4 @@ Environment:
 - Fill secrets in `./.env` (use `.env.example` as a template) before starting.
 
 That's it — intentionally brief. See individual folders for service-specific details.
+
