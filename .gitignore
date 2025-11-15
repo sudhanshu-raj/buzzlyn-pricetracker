@@ -44,7 +44,7 @@ Thumbs.db
 .DS_Store
 
 # Environment files
-.env*
+.env
 .env.local
 .env.development
 .env.production
