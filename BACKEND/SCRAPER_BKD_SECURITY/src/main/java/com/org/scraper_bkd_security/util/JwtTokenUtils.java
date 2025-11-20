@@ -94,7 +94,7 @@ public class JwtTokenUtils {
 
     public static void main(String[] args) {
         JwtTokenUtils obj=new JwtTokenUtils();
-        String token=obj.generateToken("test@gmai.com","ROLE_USER,ROLE_ADMIN","+919060117328");
+        String token=obj.generateToken("test@gmai.com","ROLE_USER,ROLE_ADMIN","+911234567890");
         //System.out.println("token::"+token);
 
         Claims claims;

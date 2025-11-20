@@ -72,7 +72,7 @@ public class NotificationService {
     public void sendAuthenticationOTPWBSMS(String to ,String otp){
         try {
             Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-            String from = "whatsapp:+917780033828";
+            String from = "whatsapp:+911234567890";
 
             Message message = Message
                     .creator(new PhoneNumber("whatsapp:"+to),
