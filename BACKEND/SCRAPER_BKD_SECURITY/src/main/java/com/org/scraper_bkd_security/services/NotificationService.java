@@ -98,7 +98,7 @@ public class NotificationService {
 
     public static void main(String[] args) {
         NotificationService obj=new NotificationService();
-        obj.sendPasswordRecoveryOTPEmail("4521","rajsudhanshu9431@gmail.com");
+        obj.sendPasswordRecoveryOTPEmail("4521","test.email@gmail.com");
     }
 
 }

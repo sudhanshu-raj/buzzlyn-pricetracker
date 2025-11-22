@@ -83,7 +83,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
                 FRONTEND_BASE_URL,
-                BACKEND_SPRING_MAIN_MODULE,  // 👈 existing
+                BACKEND_SPRING_MAIN_MODULE,
                 "http://localhost",
                 "https://localhost",
                 "http://localhost:3000",

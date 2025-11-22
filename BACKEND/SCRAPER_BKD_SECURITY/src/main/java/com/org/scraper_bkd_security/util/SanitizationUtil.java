@@ -9,11 +9,5 @@ public class SanitizationUtil {
         return input == null ? null : Encode.forHtml(input);
     }
 
-    public static void main(String[] args) {
-        String before= """
-                Firs'tname
-                """;
 
-        System.out.println(sanitize(before));
-    }
 }
